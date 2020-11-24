@@ -22,13 +22,14 @@
 #include <fstream>
 
 #include "SymbolTable.h"
+#include "TextRecord.h"
 
 using namespace std;
 
 class RecordReader {
     private:
         ifstream inputFile;
-        string programName[5];
+        string programName;
     public:
         void inputReader(string);
 };

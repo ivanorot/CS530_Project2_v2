@@ -24,6 +24,7 @@ void RecordReader::inputReader(string fileName) {
     const char* objFile = object.c_str();
     string inputLine;
     inputFile.open(objFile);
+    TextRecord textRecord;
     
     SymbolTable symtab(fileName);
     cout << endl << symtab.getData(2,"Symbol") << endl << endl;
@@ -33,33 +34,34 @@ void RecordReader::inputReader(string fileName) {
         cerr << "Check to make sure file exists within current directory\n";
     }
     
+    // while (inputFile.good()) {
+    //     getline(inputFile, inputLine);
+    //     cout << inputLine << endl;
+    // }
+    
     while (inputFile.good()) {
         getline(inputFile, inputLine);
-        cout << inputLine << endl;
-    }
-    
-    
- //   while (inputFile.good()) {
- //       getline(inputFile, inputLine);
- //       
- //       if (inputLine[0] == 'H') {
- //            programName->append(inputLine.substr(1, 5));
- //       }
- //       else if (inputLine[0] == 'T') {
- //           //Col 1 == T
- //           //Col 2-7 == Starting Address
- //           //Col 8-9 == Length of record in bytes
- //           //Col 10-69 == Object code
- //       }
- //       else if (inputLine[0] == 'M') {
- //           //2-7 starting location of the address to be
- //           //modified(relative to the begging of the program)
- //           //8-9length of the address field to be modified
- //       }
- //       else if (inputLine[0] == 'E') { 
- //           //2-7 Address first executable instruction
- //           //hhg
-	//}
- //   }
+        
+        if (inputLine[0] == 'H') {
+             programName += (inputLine.substr(1, 5));
+             cout << programName << endl;
+        }
+        else if (inputLine[0] == 'T') {
+            //Col 1 == T
+            //Col 2-7 == Starting Address
+            //Col 8-9 == Length of record in bytes
+            //Col 10-69 == Object code
+            textRecord.readLine(inputLine);
+        }
+//       else if (inputLine[0] == 'M') {
+//           //2-7 starting location of the address to be
+//           //modified(relative to the begging of the program)
+//           //8-9length of the address field to be modified
+//       }
+//       else if (inputLine[0] == 'E') { 
+//           //2-7 Address first executable instruction
+//           //hhg
+//       }
+   }
 }
 

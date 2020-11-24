@@ -33,8 +33,8 @@ class SymbolTable {
         void makeTable(string);
         
         string fileName;       //prev
-	string *symbolNames;   //prev
-	int symbolAddress[0];  //prev
+        string *symbolNames;   //prev
+        int symbolAddress[0];  //prev
     
     public:
         SymbolTable();
