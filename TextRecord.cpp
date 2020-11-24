@@ -49,9 +49,12 @@ void TextRecord::readInstructionsLoop(string instructions) {
         else if (tempFormat == 1) {
             length = 2;
         }
+        cout << opCode << "\t" << nixbpe << endl;
         mnemonicsList.push_back(opcodeTable.getOpcode(opcodeNum));
         addressList.push_back(addressCounter);
         addressCounter += length;
+        opCode.clear();
+        nixbpe.clear();
     }
 }
 
@@ -124,14 +127,14 @@ string TextRecord::intDecimalToStringHex(int decimal) {
 //checked
 int TextRecord::stringHexToIntDecimal(string tempString) {
     string hex = tempString;
-    string charHextoStringBinary(char y);
-    int stringBinaryToIntDecimal(string h);
+    //string charHextoStringBinary(char y);
+    //int stringBinaryToIntDecimal(string h);
     int decimal;
     string temp;
     
     for (unsigned int i = 0; i < hex.length(); i++) {
         temp += charHextoStringBinary(hex[i]);
-        cout << temp << endl;
+        //cout << temp << endl;
     }
     decimal = stringBinaryToIntDecimal(temp);
     return decimal;
@@ -139,8 +142,8 @@ int TextRecord::stringHexToIntDecimal(string tempString) {
 
 //checked
 string TextRecord::charHextoStringBinary(char Byte) {
-    char zeroToFifteenIntToHexChar(int f);
-    int charNumToIntNum(char d);
+    //char zeroToFifteenIntToHexChar(int f);
+    //int charNumToIntNum(char d);
     int hexNum = Byte;
     string binary;  //will save and return the char represented as binary in a string
     char temp;
