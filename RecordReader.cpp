@@ -28,16 +28,20 @@ void RecordReader::inputReader(string fileName) {
     
     SymbolTable sym(fileName);
     
-    cout << endl << endl << sym.getData(SYMTAB,0,"Symbol") << endl;
+    cout << endl << endl << "Testing SYMTAB:" << endl;
+    cout << sym.getData(SYMTAB,0,"Symbol") << endl;
     cout << sym.getData(SYMTAB,0,"Value") << endl;
     cout << sym.getData(SYMTAB,0,"Flags:") << endl;
     cout << sym.getData(SYMTAB,4,"Symbol") << endl; 
     cout << sym.getData(SYMTAB,4,"Value") << endl;
     cout << sym.getData(SYMTAB,4,"Flags:") << endl;
 
+    cout << endl << endl << "Using getByVolValue function:" << endl;
+    cout << sym.getByColValue(SYMTAB,"Symbol","TABLE2","Value") << endl;
+    cout << sym.getByColValue(SYMTAB,"Symbol","TABLE2","Flags:") << endl;
     
-    //cout << endl << symtab.getData(2,"Symbol") << endl << endl;
-    cout << endl << endl << sym.getData(LITTAB,0,"Name") << endl;
+    cout << endl << endl << "Testing LITTAB:" << endl;
+    cout << sym.getData(LITTAB,0,"Name") << endl;
     cout << sym.getData(LITTAB,0,"Literal") << endl;
     cout << sym.getData(LITTAB,0,"Length") << endl;
     cout << sym.getData(LITTAB,0,"Address:") << endl << endl; 

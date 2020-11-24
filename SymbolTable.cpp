@@ -28,7 +28,8 @@ SymbolTable::SymbolTable(string fileName) {
 string SymbolTable::getData(int table, int row, string column) {
     if (SYMTAB == table) {
         for (unsigned int i = 0; i < symboltable.size(); i++) {
-            if (symboltable[i].getRow() == row && symboltable[i].getCol() == column)
+            if (symboltable[i].getRow() == row && 
+                symboltable[i].getCol() == column)
                 return symboltable[i].getData();
         }
         return "Error: Chosen Row and Column do not exist in this symboltable";
@@ -36,7 +37,8 @@ string SymbolTable::getData(int table, int row, string column) {
     
     if (LITTAB == table) {
         for (unsigned int i = 0; i < literaltable.size(); i++) {
-            if (literaltable[i].getRow() == row && literaltable[i].getCol() == column)
+            if (literaltable[i].getRow() == row && 
+                literaltable[i].getCol() == column)
                 return literaltable[i].getData();
         }
         return "Error: Chosen Row and Column do not exist in this literaltable";
@@ -49,7 +51,9 @@ string SymbolTable::getByColValue(int table, string col1, string data, string co
         int found = 0;
          
         for (unsigned int i = 0; i < symboltable.size() && !found; i++) {
-            if (symboltable[i].getCol() == col1 && symboltable[i].getData() == data) {
+            if (symboltable[i].getCol() == col1 && 
+                symboltable[i].getData() == data) {
+                
                 row = symboltable[i].getRow();
                 found = 1;
             }
@@ -57,12 +61,13 @@ string SymbolTable::getByColValue(int table, string col1, string data, string co
                 
         if (found) {
             for (unsigned int i = 0; i < symboltable.size(); i++) {
-                if (symboltable[i].getRow() == row && symboltable[i].getCol() == col2)
-                            return symboltable[i].getData();
+                if (symboltable[i].getRow() == row && 
+                    symboltable[i].getCol() == col2)
+                    return symboltable[i].getData();
             }
-            return "Error: Chosen Row and Column do not exist in this symboltable";
+            return "Error: Row and Column do not exist in this symboltable";
         }
-        else return "Error: Chosen Row and Column do not exist in this symboltable";
+        else return "Error: Row and Column do not exist in this symboltable";
     }
     
     if (LITTAB == table) {
@@ -70,7 +75,9 @@ string SymbolTable::getByColValue(int table, string col1, string data, string co
         int found = 0;
          
         for (unsigned int i = 0; i < literaltable.size() && !found; i++) {
-            if (literaltable[i].getCol() == col1 && literaltable[i].getData() == data) {
+            if (literaltable[i].getCol() == col1 && 
+                literaltable[i].getData() == data) {
+                
                 row = literaltable[i].getRow();
                 found = 1;
             }
@@ -78,20 +85,19 @@ string SymbolTable::getByColValue(int table, string col1, string data, string co
                 
         if (found) {
             for (unsigned int i = 0; i < literaltable.size(); i++) {
-                if (literaltable[i].getRow() == row && literaltable[i].getCol() == col2)
-                            return literaltable[i].getData();
+                if (literaltable[i].getRow() == row && 
+                    literaltable[i].getCol() == col2)
+                    return literaltable[i].getData();
             }
-            return "Error: Chosen Row and Column do not exist in this literaltable";
+            return "Error: Row and Column do not exist in this literaltable";
         }
-        else return "Error: Chosen Row and Column do not exist in this literaltable";
+        else return "Error: Row and Column do not exist in this literaltable";
     }
 }
 
 void SymbolTable::set(int table, int row, string column, string data) {
-    if (SYMTAB == table)
-        symboltable.push_back(Metadata(row, column, data));
-    if (LITTAB == table)
-        literaltable.push_back(Metadata(row, column, data));
+    if (SYMTAB == table) symboltable.push_back(Metadata(row, column, data));
+    if (LITTAB == table) literaltable.push_back(Metadata(row, column, data));
 }
 
 void SymbolTable::makeTable(string fileName) {
@@ -113,11 +119,6 @@ void SymbolTable::makeTable(string fileName) {
         //cout << col << endl;
         sym_col.push_back(col);
     }
-    //cout << "col size: " << sym_col.size() << endl;
-    
-    //for (int i=0; i < sym_col.size(); i++) {
-    //    cout << sym_col.at(i) << ' ';
-    //}
     
     int i = 0;
     while (inputFile.good()) {
