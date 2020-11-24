@@ -7,6 +7,9 @@
 #include <sstream>
 #include <vector>
 
+#define SYMTAB 1
+#define LITTAB 2
+
 using namespace std;
 
 class Metadata {
@@ -28,8 +31,9 @@ class SymbolTable {
     private:
         string symbolfile;
         ifstream inputFile;
-        vector<Metadata> table;
-        void set(int, string, string);
+        vector<Metadata> symboltable;
+        vector<Metadata> literaltable;
+        void set(int, int, string, string);
         void makeTable(string);
         
         string fileName;       //prev
@@ -40,8 +44,8 @@ class SymbolTable {
         SymbolTable();
         SymbolTable(string);
                  
-        string getData(int, string);
-        string getByColValue(string, string, string);
+        string getData(int, int, string);
+        string getByColValue(int, string, string, string);
 };
 
 #endif

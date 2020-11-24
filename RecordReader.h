@@ -24,6 +24,9 @@
 #include "SymbolTable.h"
 #include "TextRecord.h"
 
+#define SYMTAB 1
+#define LITTAB 2
+
 using namespace std;
 
 class RecordReader {

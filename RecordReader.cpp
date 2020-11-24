@@ -26,8 +26,21 @@ void RecordReader::inputReader(string fileName) {
     inputFile.open(objFile);
     TextRecord textRecord;
     
-    SymbolTable symtab(fileName);
-    cout << endl << symtab.getData(2,"Symbol") << endl << endl;
+    SymbolTable sym(fileName);
+    
+    cout << endl << endl << sym.getData(SYMTAB,0,"Symbol") << endl;
+    cout << sym.getData(SYMTAB,0,"Value") << endl;
+    cout << sym.getData(SYMTAB,0,"Flags:") << endl;
+    cout << sym.getData(SYMTAB,4,"Symbol") << endl; 
+    cout << sym.getData(SYMTAB,4,"Value") << endl;
+    cout << sym.getData(SYMTAB,4,"Flags:") << endl;
+
+    
+    //cout << endl << symtab.getData(2,"Symbol") << endl << endl;
+    cout << endl << endl << sym.getData(LITTAB,0,"Name") << endl;
+    cout << sym.getData(LITTAB,0,"Literal") << endl;
+    cout << sym.getData(LITTAB,0,"Length") << endl;
+    cout << sym.getData(LITTAB,0,"Address:") << endl << endl; 
     
     if (!inputFile.is_open()) {
         cout << "Error with file\n";
