@@ -28,6 +28,13 @@ void RecordReader::inputReader(string fileName) {
     
     SymbolTable sym(fileName);
     
+    cout << endl << endl << "Testing getting Row and Col:" << endl;
+    int row;
+    string column;
+    tie(row,column) = sym.getRowCol(SYMTAB,"TABLE2");
+    cout << "Row: " << row << endl;
+    cout << "Col: " << column << endl;
+    
     cout << endl << endl << "Testing SYMTAB:" << endl;
     cout << sym.getData(SYMTAB,0,"Symbol") << endl;
     cout << sym.getData(SYMTAB,0,"Value") << endl;

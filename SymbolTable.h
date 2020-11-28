@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <tuple>
 
 #define SYMTAB 1
 #define LITTAB 2
@@ -43,7 +44,9 @@ class SymbolTable {
     public:
         SymbolTable();
         SymbolTable(string);
-                 
+        
+        tuple<int,string> getRowCol(int, string);
+        //int getRowCol(int, string);
         string getData(int, int, string);
         string getByColValue(int, string, string, string);
 };

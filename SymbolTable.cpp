@@ -23,8 +23,48 @@ SymbolTable::SymbolTable() {}
 SymbolTable::SymbolTable(string fileName) {
     this->SymbolTable::makeTable(fileName);
 }
-        
-        
+
+
+tuple<int,string> SymbolTable::getRowCol(int table, string value) {
+     if (SYMTAB == table) {
+        for (unsigned int i = 0; i < symboltable.size(); i++) {
+            if (symboltable[i].getData() == value)
+                return make_tuple(symboltable[i].getRow(),symboltable[i].getCol());
+        }
+        return make_tuple(-1,"Not in table");
+    }
+    
+    if (LITTAB == table) {
+        for (unsigned int i = 0; i < literaltable.size(); i++) {
+            if (literaltable[i].getData() == value)
+                return make_tuple(literaltable[i].getRow(),literaltable[i].getCol());
+        }
+        return make_tuple(-1,"Not in table");
+    }
+   
+}
+
+
+//int getRowCol(int table, string value) {
+//     if (SYMTAB == table) {
+//        for (unsigned int i = 0; i < symboltable.size(); i++) {
+//            if (symboltable[i].getData() == value)
+//                return symboltable[i].getRow();
+//        }
+//        return -1;
+//    }
+//    
+//    if (LITTAB == table) {
+//        for (unsigned int i = 0; i < literaltable.size(); i++) {
+//            if (literaltable[i].getData() == value)
+//                return literaltable[i].getRow();
+//        }
+//        return -1;
+//    }
+//   
+//}
+
+
 string SymbolTable::getData(int table, int row, string column) {
     if (SYMTAB == table) {
         for (unsigned int i = 0; i < symboltable.size(); i++) {
@@ -44,7 +84,8 @@ string SymbolTable::getData(int table, int row, string column) {
         return "Error: Chosen Row and Column do not exist in this literaltable";
     }
 }
-        
+
+
 string SymbolTable::getByColValue(int table, string col1, string data, string col2) {
     if (SYMTAB == table) {
         int row;
@@ -94,6 +135,7 @@ string SymbolTable::getByColValue(int table, string col1, string data, string co
         else return "Error: Row and Column do not exist in this literaltable";
     }
 }
+
 
 void SymbolTable::set(int table, int row, string column, string data) {
     if (SYMTAB == table) symboltable.push_back(Metadata(row, column, data));
