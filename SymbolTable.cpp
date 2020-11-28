@@ -143,13 +143,10 @@ void SymbolTable::set(int table, int row, string column, string data) {
 }
 
 void SymbolTable::makeTable(string fileName) {
-    string symbol = fileName + ".sym";
-    const char* symbolFile = symbol.c_str();
-    string inputLine;
-    inputFile.open(symbolFile);
-    vector<string> sym_col;
-    vector<string> lit_col;
+    string file = fileName + ".sym";
+    const char* symbolFile = file.c_str();
     
+    inputFile.open(symbolFile);
     if (!inputFile.is_open()) {
         cout << "Error with file\n";
         cerr << "Check to make sure file exists within current directory\n";
@@ -160,6 +157,18 @@ void SymbolTable::makeTable(string fileName) {
     for (string col; sym_buf >> col; ) {
         //cout << col << endl;
         sym_col.push_back(col);
+    }
+    
+    for (int i = 0; i < sym_col.size(); i++) {
+        if ( ((sym_col.at(i)).substr(0,3)).compare("Sym") == 0 ||
+             ((sym_col.at(i)).substr(0,3)).compare("sym") == 0 ) 
+            this->symbol = sym_col.at(i);
+        if ( ((sym_col.at(i)).substr(0,3)).compare("Val") == 0 ||
+             ((sym_col.at(i)).substr(0,3)).compare("val") == 0 ) 
+            this->value = sym_col.at(i);
+        if ( ((sym_col.at(i)).substr(0,3)).compare("Fla") == 0 ||
+             ((sym_col.at(i)).substr(0,3)).compare("fla") == 0 ) 
+            this->flags = sym_col.at(i);
     }
     
     int i = 0;
@@ -184,6 +193,22 @@ void SymbolTable::makeTable(string fileName) {
         //cout << col << endl;
         lit_col.push_back(col);
     }
+    
+     for (int i = 0; i < lit_col.size(); i++) {
+        if ( ((lit_col.at(i)).substr(0,3)).compare("Nam") == 0 ||
+             ((lit_col.at(i)).substr(0,3)).compare("nam") == 0 ) 
+            this->name = lit_col.at(i);
+        if ( ((lit_col.at(i)).substr(0,3)).compare("Lit") == 0 ||
+             ((lit_col.at(i)).substr(0,3)).compare("lit") == 0 ) 
+            this->literal = lit_col.at(i);
+        if ( ((lit_col.at(i)).substr(0,3)).compare("Len") == 0 ||
+             ((lit_col.at(i)).substr(0,3)).compare("len") == 0 ) 
+            this->length = lit_col.at(i);
+        if ( ((lit_col.at(i)).substr(0,3)).compare("Add") == 0 ||
+             ((lit_col.at(i)).substr(0,3)).compare("add") == 0 ) 
+            this->address = lit_col.at(i);
+    }
+
     
     i = 0;
     while (inputFile.good()) {

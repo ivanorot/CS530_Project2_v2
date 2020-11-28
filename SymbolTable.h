@@ -30,10 +30,14 @@ class Metadata {
 
 class SymbolTable {
     private:
-        string symbolfile;
         ifstream inputFile;
+        string inputLine;
+        
+        vector<string> sym_col;
+        vector<string> lit_col; 
         vector<Metadata> symboltable;
         vector<Metadata> literaltable;
+        
         void set(int, int, string, string);
         void makeTable(string);
         
@@ -42,6 +46,9 @@ class SymbolTable {
         int symbolAddress[0];  //prev
     
     public:
+        string symbol, value, flags;
+        string name, literal, length, address;
+ 
         SymbolTable();
         SymbolTable(string);
         

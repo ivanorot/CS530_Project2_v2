@@ -28,30 +28,45 @@ void RecordReader::inputReader(string fileName) {
     
     SymbolTable sym(fileName);
     
-    cout << endl << endl << "Testing getting Row and Col:" << endl;
-    int row;
-    string column;
-    tie(row,column) = sym.getRowCol(SYMTAB,"TABLE2");
-    cout << "Row: " << row << endl;
-    cout << "Col: " << column << endl;
+    cout << endl << endl;
+    cout << "DEMO" << endl;
+    cout << "====" << endl;
+    cout << "Test getting Row and Col of a" << endl;
+    cout << "given value to find in the table:" << endl << endl;
     
-    cout << endl << endl << "Testing SYMTAB:" << endl;
-    cout << sym.getData(SYMTAB,0,"Symbol") << endl;
-    cout << sym.getData(SYMTAB,0,"Value") << endl;
-    cout << sym.getData(SYMTAB,0,"Flags:") << endl;
-    cout << sym.getData(SYMTAB,4,"Symbol") << endl; 
-    cout << sym.getData(SYMTAB,4,"Value") << endl;
-    cout << sym.getData(SYMTAB,4,"Flags:") << endl;
-
-    cout << endl << endl << "Using getByVolValue function:" << endl;
-    cout << sym.getByColValue(SYMTAB,"Symbol","TABLE2","Value") << endl;
-    cout << sym.getByColValue(SYMTAB,"Symbol","TABLE2","Flags:") << endl;
+    string val_findintable = "001791";
+    int foundrow;
+    string foundcol;
+    tie(foundrow,foundcol) = sym.getRowCol(SYMTAB,val_findintable);
+   
+    cout << "Value to find in table: " << val_findintable << endl << endl; 
+     
+    cout << "Found Row: " << foundrow << endl;
+    cout << "Found Col: " << foundcol << endl << endl;
     
-    cout << endl << endl << "Testing LITTAB:" << endl;
-    cout << sym.getData(LITTAB,0,"Name") << endl;
-    cout << sym.getData(LITTAB,0,"Literal") << endl;
-    cout << sym.getData(LITTAB,0,"Length") << endl;
-    cout << sym.getData(LITTAB,0,"Address:") << endl << endl; 
+    cout << "Using the found row, get data from a different column" << endl;
+    cout << "that is on the same row." << endl;
+    cout << "Example here using sym.symbol: ";
+    cout << sym.getData(SYMTAB,foundrow,sym.symbol);
+    cout << endl << endl;
+    
+//    cout << endl << endl << "Testing SYMTAB:" << endl;
+//    cout << sym.getData(SYMTAB,0,"Symbol") << endl;
+//    cout << sym.getData(SYMTAB,0,"Value") << endl;
+//    cout << sym.getData(SYMTAB,0,"Flags:") << endl;
+//    cout << sym.getData(SYMTAB,4,"Symbol") << endl; 
+//    cout << sym.getData(SYMTAB,4,"Value") << endl;
+//    cout << sym.getData(SYMTAB,4,"Flags:") << endl;
+//    
+//    cout << endl << endl << "Using getByVolValue function:" << endl;
+//    cout << sym.getByColValue(SYMTAB,"Symbol","TABLE2","Value") << endl;
+//    cout << sym.getByColValue(SYMTAB,"Symbol","TABLE2","Flags:") << endl;
+//    
+//    cout << endl << endl << "Testing LITTAB:" << endl;
+//    cout << sym.getData(LITTAB,0,"Name") << endl;
+//    cout << sym.getData(LITTAB,0,"Literal") << endl;
+//    cout << sym.getData(LITTAB,0,"Length") << endl;
+//    cout << sym.getData(LITTAB,0,"Address:") << endl << endl; 
     
     if (!inputFile.is_open()) {
         cout << "Error with file\n";
