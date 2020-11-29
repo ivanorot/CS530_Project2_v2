@@ -25,6 +25,7 @@ SymbolTable::SymbolTable(string fileName) {
 }
 
 
+
 tuple<int,string> SymbolTable::getRowCol(int table, string value) {
      if (SYMTAB == table) {
         for (unsigned int i = 0; i < symboltable.size(); i++) {

@@ -13,7 +13,7 @@ class StatementDecoder {
 
 
     public:
-        StatementDecoder(SymbolTable);
+        StatementDecoder(string);
         
         string getStatement(int format, string targetAddress, string nixbpe);
         string formatTwo(string targetAddress);

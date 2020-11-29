@@ -1,5 +1,6 @@
 #include "TextRecord.h"
-TextRecord::TextRecord() {}
+TextRecord::TextRecord(string filename) {
+}
     //Col 1 == T
     //Col 2-7 == Starting Address
     //Col 8-9 == Length of record in bytes

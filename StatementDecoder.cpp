@@ -1,8 +1,10 @@
 #include "StatementDecoder.h"
 
-StatementDecoder::StatementDecoder(SymbolTable sym) {
-    symbolTable = sym;
+StatementDecoder::StatementDecoder(string s) {
+    symbolTable.makeTable(s);
 }
+
+
 
 //format 1 = XX
 //format 2 = XX[XX]

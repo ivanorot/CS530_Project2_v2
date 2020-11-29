@@ -39,13 +39,14 @@ class SymbolTable {
         vector<Metadata> literaltable;
         
         void set(int, int, string, string);
-        void makeTable(string);
         
-        string fileName;       //prev
-        string *symbolNames;   //prev
-        int symbolAddress[0];  //prev
+        
+        //string fileName;       //prev
+        //string *symbolNames;   //prev
+        //int symbolAddress[0];  //prev
     
     public:
+        void makeTable(string);
         string symbol, value, flags;
         string name, literal, length, address;
  

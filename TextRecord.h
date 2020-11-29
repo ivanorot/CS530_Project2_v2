@@ -6,6 +6,7 @@
 #include <cmath>
 #include <list>
 
+#include "StatementDecoder.h"
 #include "OpcodeTable.h"
 
 using namespace std;
@@ -18,9 +19,10 @@ class TextRecord {
         OpcodeTable opcodeTable;
         list<string> mnemonicsList;
         list<int> addressList;
+       
         
     public:
-        TextRecord();
+        TextRecord(string);
             
         void readLine(string inputLine);
         

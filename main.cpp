@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
     cout << "@author Ivan Orozco 82217656 cssc3012\n";
     cout << "@author Mariano Hernandez 820450001 cssc3062\n\n";
     
+
     if (argc != 2) {
         cout << "Incorrect number of arguemnts\n";
         cerr << "Correct usage: dis <filename>\n";

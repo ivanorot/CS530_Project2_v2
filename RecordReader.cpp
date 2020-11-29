@@ -24,10 +24,11 @@ void RecordReader::inputReader(string fileName) {
     const char* objFile = object.c_str();
     string inputLine;
     inputFile.open(objFile);
-    TextRecord textRecord;
+    TextRecord textRecord(fileName);
     
     SymbolTable sym(fileName);
     
+  
     cout << endl << endl;
     cout << "DEMO" << endl;
     cout << "====" << endl;
