@@ -19,10 +19,13 @@ class TextRecord {
         OpcodeTable opcodeTable;
         list<string> mnemonicsList;
         list<int> addressList;
-       
+        list<string> tAList;
+        string fileName;
         
     public:
         TextRecord(string);
+
+        void print();
             
         void readLine(string inputLine);
         
@@ -31,6 +34,8 @@ class TextRecord {
         int getOpcodeNum(string);
         
         int findOpcodeFormat(int);
+
+        list<int> returnAddress();
         
         string stringHexToStringBinary(string);
         
