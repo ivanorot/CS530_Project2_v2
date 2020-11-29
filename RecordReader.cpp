@@ -20,14 +20,14 @@
 #include "RecordReader.h"
 
 void RecordReader::inputReader(string fileName) {
-    string object = fileName + ".obj";
+    string object = fileName + ".txt";
     const char* objFile = object.c_str();
     string inputLine;
     inputFile.open(objFile);
     TextRecord textRecord;
     
-    SymbolTable symtab(fileName);
-    cout << endl << symtab.getData(2,"Symbol") << endl << endl;
+    //SymbolTable symtab(fileName);
+   // cout << endl << symtab.getData(2,"Symbol") << endl << endl;
     
     if (!inputFile.is_open()) {
         cout << "Error with file\n";

@@ -23,6 +23,7 @@
 #include <string>
 #include "RecordReader.h"
 
+
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -34,10 +35,10 @@ int main(int argc, char* argv[]) {
     if (argc != 2) {
         cout << "Incorrect number of arguemnts\n";
         cerr << "Correct usage: dis <filename>\n";
-        return 1;    
+       // return 1;    
     }
     
-    string fileName = argv[1];
+    string fileName = "sample";
     //string objFile = fileName + ".obj";
     //string symFile = fileName + ".sym";
    

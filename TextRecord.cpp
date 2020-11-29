@@ -1,6 +1,8 @@
 #include "TextRecord.h"
 
-TextRecord::TextRecord() {}
+TextRecord::TextRecord() {
+    addressCounter = 0;
+}
     //Col 1 == T
     //Col 2-7 == Starting Address
     //Col 8-9 == Length of record in bytes
@@ -8,60 +10,123 @@ TextRecord::TextRecord() {}
 
 
 void TextRecord::readLine(string inputLine) {
-    addressCounter = 0;
+    
     //int lineLength;
     //Do something with the Starting Address
     //move up to the 8th character
     startingAddress = stringHexToIntDecimal(inputLine.substr(1, 6));
-    recordLength = stringHexToIntDecimal(inputLine.substr(7, 2));
+    recordLength = 2*stringHexToIntDecimal(inputLine.substr(7, 2));
     readInstructionsLoop(inputLine.substr(9, recordLength));
 }
 
 
 void TextRecord::readInstructionsLoop(string instructions) {
+    int recordCounter = 0;
     string tempString;
     string nixbpe;
     string opCode;
+    string taAddress;
     int tempFormat;
     int opcodeNum;
     int length = 0;
+    bool eflag = false;
+    bool jumpflag;
     
-    while (addressCounter < recordLength) {
-        tempString = instructions.substr(addressCounter, 3);
+    while (recordCounter < recordLength-3) {
+        jumpflag = true;
+        tempString = instructions.substr(recordCounter, 3);
         tempString = stringHexToStringBinary(tempString);
         nixbpe += tempString.substr(6, 6);
         opCode += tempString.substr(0, 6);
         opCode += "00";
+
+        LOOKFOROPCODE:
         opcodeNum = getOpcodeNum(opCode);
         tempFormat = findOpcodeFormat(opcodeNum);
         
         if (tempFormat == 3) {
-            if (nixbpe[6] == '1') {
-                length = 7;
+            if (nixbpe[5] == '1') {
+                length = 8;
+                eflag = true;
+                taAddress += instructions.substr(recordCounter + 3, 5);
             }
             else {
                 length = 6;
+                taAddress += instructions.substr(recordCounter + 3, 3);
             }
         }
         else if (tempFormat == 2) {
             length = 4;
+            taAddress += instructions.substr(recordCounter + 2, 2);
+            
         }
         else if (tempFormat == 1) {
             length = 2;
         }
+        else {
+            opCode.clear();
+            opCode += tempString.substr(0, 8);
+            if (jumpflag) {
+                jumpflag = false;
+                goto LOOKFOROPCODE;
+            }
+        }
         cout << opCode << "\t" << nixbpe << endl;
-        mnemonicsList.push_back(opcodeTable.getOpcode(opcodeNum));
+
+        if (eflag) {
+            mnemonicsList.push_back("+"+opcodeTable.getOpcode(opcodeNum));
+            eflag = false;
+        }
+        else {
+            mnemonicsList.push_back(opcodeTable.getOpcode(opcodeNum));
+        }
         addressList.push_back(addressCounter);
+        tAList.push_back(taAddress);
+        recordCounter += length;
         addressCounter += length;
         opCode.clear();
         nixbpe.clear();
+        taAddress.clear();
     }
+    instructions.clear();
+    print();
+}
+
+void TextRecord::print() {
+    int length = mnemonicsList.size();
+    for (int i = 0; i < length; i++) {
+        cout << intDecimalToStringHex((addressList.front())/2) <<"\t"<< mnemonicsList.front()<<"\t"<<tAList.front()<<endl;
+        mnemonicsList.pop_front();
+        addressList.pop_front();
+        tAList.pop_front();
+    }
+
+}
+
+list<int> TextRecord::returnAddress() {
+    //int length = addressList.size();
+    //for (int i = 0; i < length; i++) {
+    //    intDecimalToStringHex((addressList.front()) / 2);
+    //}
+    return addressList;
 }
 
 
 int TextRecord::getOpcodeNum(string opcodeBinary) {
+    string temp;
     string tempOpcode = stringBinaryToStringHex(opcodeBinary);
+    if (tempOpcode.length() == 1) {
+        temp += "0";
+        temp += tempOpcode;
+        tempOpcode = temp;
+    }
+    else if (tempOpcode.length() == 0) {
+        tempOpcode += "00";
+    }
+
     int opcodeNum = opcodeTable.checkIfOpcode(tempOpcode);
+    temp.clear();
+    tempOpcode.clear();
     return opcodeNum;
 }
 
@@ -70,13 +135,13 @@ int TextRecord::findOpcodeFormat(int opCode) {
     string format;
     format = opcodeTable.getFormat(opCode);
     
-    if (format.compare("3/4")) {
+    if (format=="3/4") {
         return 3;
     }
-    else if (format.compare("2")) {
+    else if (format=="2") {
         return 2;
     }
-    else if (format.compare("1")) {
+    else if (format=="1") {
         return 1;
     }
     else {
@@ -184,7 +249,7 @@ char TextRecord::zeroToFifteenIntToHexChar(int num) {
         tempChar = (num + 48);
     }
     else {
-        tempChar = ((num - 10) + 97);
+        tempChar = ((num - 10) + 65);
     }
     return tempChar;
 }
