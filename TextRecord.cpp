@@ -1,5 +1,4 @@
 #include "TextRecord.h"
-
 TextRecord::TextRecord() {}
     //Col 1 == T
     //Col 2-7 == Starting Address
