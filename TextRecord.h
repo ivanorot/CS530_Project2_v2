@@ -46,7 +46,7 @@ class TextRecord {
         
         int checkLiteral(string);
 
-        void checkBase(string mneumonic);
+        bool checkBase(string mneumonic);
         
         void readInstructionsLoop(string);
         
