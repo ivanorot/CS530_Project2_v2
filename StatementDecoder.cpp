@@ -3,7 +3,7 @@
 StatementDecoder::StatementDecoder(string s, int b, int pc) {
     symbolTable.makeTable(s);
     base = b;
-    progC = pc;
+    progC = pc+8;
     fileName = s;
 }
 
@@ -93,17 +93,20 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     size = format4check(nixbpe);
     if (nixbpe[2] == '1') {  //PC relative
         checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
-        progC += 3;
-        checkSymbol += progC;
+        checkSymbol += (progC/2);
         cout << checkSymbol << endl;
         ret = hexTranslator.intDecimalToStringHex(checkSymbol);
         tempGetSymbol += ret;
-        cout << tempGetSymbol << endl;
+        
+        cout << getSixLength(tempGetSymbol) << endl;
         //check if symbol
 
     }
     else if (nixbpe[3] == '1') {
 
+    }
+    else {
+        ret += targetAd;
     }
     return ret;
 }

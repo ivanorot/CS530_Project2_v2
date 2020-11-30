@@ -88,9 +88,10 @@ void TextRecord::readInstructionsLoop(string instructions) {
         }
         addressList.push_back(addressCounter);
         tAList.push_back(taAddress);
+        saveStatement(tempFormat, taAddress, nixbpe);
         recordCounter += length;
         addressCounter += length;
-        saveStatement(tempFormat, taAddress, nixbpe);
+        
         opCode.clear();
         nixbpe.clear();
         taAddress.clear();
