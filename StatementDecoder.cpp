@@ -86,6 +86,7 @@ string StatementDecoder::formatThree(string targetAd, string nixbpe) {
 
 string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     TextRecord hexTranslator;
+    cout << nixbpe << "\t";
     int checkSymbol;
     int size;
     string tempReturn;
@@ -95,13 +96,10 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
     if (nixbpe[2] == '1') {  //PC relative
         checkSymbol += (progC/2);
-        cout << checkSymbol << endl;
+        cout << checkSymbol <<"\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
-
-
         tempGetSymbol += getSixLength(tempReturn);
-        
-        cout << tempGetSymbol << endl;
+        cout << tempGetSymbol << "\t";
         tempReturn.clear();
         tempReturn += checkSymbolFun(tempGetSymbol);
         cout << tempReturn << endl;
@@ -111,9 +109,10 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     }
     else if (nixbpe[3] == '1') {
         checkSymbol += (base / 2);
+        cout << checkSymbol << "\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
         tempGetSymbol += getSixLength(tempReturn);
-        cout << tempGetSymbol << endl;
+        cout << tempGetSymbol <<"\t";
         tempReturn.clear();
         tempReturn += checkSymbolFun(tempGetSymbol);
         cout << tempReturn<<endl;
