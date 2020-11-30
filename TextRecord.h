@@ -31,6 +31,7 @@ class TextRecord {
         
     public:
 
+        void printLis(string);
 
         TextRecord();
 
@@ -71,6 +72,16 @@ class TextRecord {
         char zeroToFifteenIntToHexChar(int);
         
         int stringBinaryToIntDecimal(string);
+        
+        string checkLiteralFun(int);
+
+        string checkSymbolFun(int);
+
+        string checkLiteralAddress(int);
+
+        string checkSymbolAddress(int);
+        
+        string getSymbolwithStringAddress(string);
 };
 
 #endif

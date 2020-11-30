@@ -192,6 +192,55 @@ void TextRecord::print() {
 
 }
 
+void TextRecord::printLis(string programLength) {
+    int length = stringHexToIntDecimal(programLength);
+    string address;
+    int i = 0;
+    string temp;
+    int symbolRowCount = 0;
+    int litRowCount = 0;
+    bool instructionCheck;
+    bool symbolCheck;
+    bool litCheck;
+
+    while(i<length){
+        temp = intDecimalToStringHex(i);
+        address = getSixLength(temp);
+        instructionCheck = (i == addressList.front());
+        symbolCheck = (address==checkSymbolAddress(symbolRowCount));
+        litCheck = (address == checkLiteralAddress(litRowCount));
+
+        if (symbolCheck == true && instructionCheck == true) {
+            cout << address << "\t" << checkSymbolFun(symbolRowCount) << "\t" << mnemonicsList.front() << statements.front() << endl;
+            if (checkBase(mnemonicsList.front())) {
+                cout << "\t" << "\t" << "\t" << "\t" << "BASE" << getSymbolwithStringAddress(getSixLength(intDecimalToStringHex(base))) << endl;
+            }
+            symbolRowCount++;
+            mnemonicsList.pop_front();
+            statements.pop_front();
+
+        }
+        else if (instructionCheck == true) {
+            cout << address << "\t" << "\t" << "\t" << mnemonicsList.front() << statements.front()<<endl;
+            if (checkBase(mnemonicsList.front())) {
+                cout << "\t" << "\t" << "\t" << "\t" << "BASE" << getSymbolwithStringAddress(getSixLength(intDecimalToStringHex(base))) << endl;
+            }
+            mnemonicsList.pop_front();
+            statements.pop_front();
+        }
+
+        else if (symbolCheck == true) {
+            cout << address << "\t" << checkSymbolFun(symbolRowCount) << "\t" << "\t" << "\t"<<endl;
+            symbolRowCount++;
+        }
+        else if (litCheck) {
+            cout << address << "\t" << "\t" << "\t" << "*" << checkLiteralFun(litRowCount) << endl;
+            litRowCount++;
+        }
+    }
+
+}
+
 list<int> TextRecord::returnAddress() {
     //int length = addressList.size();
     //for (int i = 0; i < length; i++) {
@@ -359,4 +408,39 @@ int TextRecord::stringBinaryToIntDecimal(string binary) {
     }
     return result;
 }
+
+string TextRecord::checkLiteralFun(int row) {
+        string literal = sym.getData(LITTAB, row, sym.literal);
+        return literal;
+
+}
+
+string TextRecord::checkSymbolFun(int row) {
+        string symbol = sym.getData(SYMTAB, row, sym.symbol);
+        return symbol;
+}
+
+string TextRecord::checkLiteralAddress(int row) {
+    string literal = sym.getData(LITTAB, row, sym.address);
+    return literal;
+
+}
+
+string TextRecord::checkSymbolAddress(int row) {
+    string symbol = sym.getData(SYMTAB, row, sym.value);
+    return symbol;
+}
+
+string TextRecord::getSymbolwithStringAddress(string address) {
+    int row;
+    string col;
+    tie(row, col) = sym.getRowCol(SYMTAB, address);
+    if (row >= 0) {
+        string symbol = sym.getData(SYMTAB, row, sym.symbol);
+        return symbol;
+    }
+    else
+        return "";
+}
+
 

@@ -73,7 +73,7 @@ string SymbolTable::getData(int table, int row, string column) {
                 symboltable[i].getCol() == column)
                 return symboltable[i].getData();
         }
-        return "Error: Chosen Row and Column do not exist in this symboltable";
+        return "";
     }
     
     if (LITTAB == table) {
@@ -82,7 +82,7 @@ string SymbolTable::getData(int table, int row, string column) {
                 literaltable[i].getCol() == column)
                 return literaltable[i].getData();
         }
-        return "Error: Chosen Row and Column do not exist in this literaltable";
+        return "";
     }
 }
 
