@@ -5,8 +5,8 @@
 # @author Ivan Orozco 822171656 cssc3012
 # @author Mariano Hernandez 820450001 cssc3062
 
-dis: main.o RecordReader.o SymbolTable.o TextRecord.o OpcodeTable.o
-	g++ main.o RecordReader.o SymbolTable.o TextRecord.o OpcodeTable.o -o dis
+dis: main.o RecordReader.o SymbolTable.o TextRecord.o OpcodeTable.o StatementDecoder.o
+	g++ main.o RecordReader.o SymbolTable.o TextRecord.o OpcodeTable.o StatementDecoder.o -o dis
 
 main.o: main.cpp
 	g++ -std=c++11 -c main.cpp
@@ -22,6 +22,9 @@ TextRecord.o: TextRecord.cpp
 
 OpcodeTable.o: OpcodeTable.cpp
 	g++ -std=c++11 -c OpcodeTable.cpp
+
+StatementDecoder.o: StatementDecoder.cpp
+	g++ -std=c++11 -c StatementDecoder.cpp
 
 clean:
 	rm *.o dis

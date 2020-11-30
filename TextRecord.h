@@ -6,8 +6,12 @@
 #include <cmath>
 #include <list>
 
+#include "SymbolTable.h"
 #include "StatementDecoder.h"
 #include "OpcodeTable.h"
+
+#define SYMTAB 1
+#define LITTAB 2
 
 using namespace std;
 
@@ -21,6 +25,7 @@ class TextRecord {
         list<int> addressList;
         list<string> tAList;
         list<string> statements;
+        SymbolTable sym;
         string fileName;
         int base;
         
@@ -32,6 +37,8 @@ class TextRecord {
         void print();
             
         void readLine(string inputLine);
+        
+        int checkLiteral(string);
         
         void readInstructionsLoop(string);
         

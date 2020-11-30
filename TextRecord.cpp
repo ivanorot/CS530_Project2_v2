@@ -11,6 +11,7 @@ TextRecord::TextRecord() {
 TextRecord::TextRecord(string filename) {
     addressCounter = 0;
     fileName = filename;
+    sym.makeTable(fileName);
 }
 
 
@@ -24,6 +25,34 @@ void TextRecord::readLine(string inputLine) {
     readInstructionsLoop(inputLine.substr(9, recordLength));
 }
 
+int TextRecord::checkLiteral(string address) {
+    int row;
+    string col;
+    tie(row,col) = sym.getRowCol(LITTAB,address);
+    if (row >= 0) {
+        string literal = sym.getData(LITTAB,row,sym.literal);
+        
+        if (literal[1] == 'c' || literal[1] == 'C') {
+            int index = 3;
+            int count = 0;
+            while (literal[index] != '\'') {
+               index++;
+               count++;
+            }
+            return count;
+        }
+        else if (literal[1] == 'x' || literal[1] == 'X'){
+            int index = 3;
+            int count = 0;
+            while (literal[index] != '\'') {
+               index++;
+               count++;
+            }
+            return count;
+        }
+    }
+    return 0;
+}
 
 void TextRecord::readInstructionsLoop(string instructions) {
     int recordCounter = 0;

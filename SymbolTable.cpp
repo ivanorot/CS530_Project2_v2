@@ -178,7 +178,7 @@ void SymbolTable::makeTable(string fileName) {
         if (inputLine.empty()) break;
         
         if ( !((inputLine.substr(0,3)).compare("---") == 0) ) {
-            cout << inputLine << endl;
+            //cout << inputLine << endl;
             istringstream buf(inputLine);
             string val;
             for (int j = 0; buf >> val; j++) {
@@ -217,7 +217,7 @@ void SymbolTable::makeTable(string fileName) {
         if (inputLine.empty()) break;
         
         if ( !((inputLine.substr(0,3)).compare("---") == 0) ) {
-            cout << inputLine << endl;
+            //cout << inputLine << endl;
             istringstream buf(inputLine);
             string val;
             int k = 0;

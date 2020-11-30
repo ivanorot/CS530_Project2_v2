@@ -91,6 +91,7 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     string ret;
     string tempGetSymbol;
     size = format4check(nixbpe);
+    cout << targetAd << endl;
     if (nixbpe[2] == '1') {  //PC relative
         checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
         checkSymbol += (progC/2);
@@ -99,6 +100,7 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
         tempGetSymbol += ret;
         
         cout << getSixLength(tempGetSymbol) << endl;
+        cout << ".........................." << endl;
         //check if symbol
 
     }

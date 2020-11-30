@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
        // return 1;    
     }
     
-    string fileName = "sample";
+    string fileName = argv[1];
     //string objFile = fileName + ".obj";
     //string symFile = fileName + ".sym";
    

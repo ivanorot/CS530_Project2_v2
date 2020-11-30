@@ -20,7 +20,7 @@
 #include "RecordReader.h"
 
 void RecordReader::inputReader(string fileName) {
-    string object = fileName + ".txt";
+    string object = fileName + ".obj";
     const char* objFile = object.c_str();
     string inputLine;
     inputFile.open(objFile);
