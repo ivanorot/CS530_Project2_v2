@@ -141,7 +141,7 @@ string StatementDecoder::checkLiteralFun(string address) {
     string col;
     tie(row, col) = symbolTable.getRowCol(LITTAB, address);
     if (row >= 0) {
-        string literal = symbolTable.getData(LITTAB, row, symbolTable.address);
+        string literal = symbolTable.getData(LITTAB, row, symbolTable.literal);
         return literal;
     }
     else
