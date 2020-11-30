@@ -121,7 +121,8 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
 
     }
     else {
-        tempReturn += targetAd;
+       tempGetSymbol += getSixLength(targetAd);
+       tempReturn += checkSymbolFun(tempGetSymbol);
     }
     return tempReturn;
 }
