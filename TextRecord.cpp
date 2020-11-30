@@ -136,7 +136,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
                 goto LOOKFOROPCODE;
             }
         }
-       // cout << opCode << "\t" << nixbpe << endl;
+        cout << opCode << "\t" << nixbpe << endl;
         mneumonic += opcodeTable.getOpcode(opcodeNum);
         checkBase(mneumonic);
 

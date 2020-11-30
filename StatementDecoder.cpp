@@ -161,11 +161,11 @@ string StatementDecoder::getSixLength(string hex) {
 
 int StatementDecoder::format4check(string nixpbe) {
     if (nixpbe[5] == '1') {
-        progC += 8;
+        progC += 10;
         return 4;
     }
     else
-        progC += 6;
+        progC += 8;
         return 3;
 }
 
