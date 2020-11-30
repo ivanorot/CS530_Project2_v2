@@ -152,7 +152,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         else {
             mnemonicsList.push_back(mneumonic);
         }
-        addressList.push_back(getSixLength(intDecimalToStringHex(addressCounter)));
+        addressList.push_back(getSixLength(intDecimalToStringHex(addressCounter/2)));
         tAList.push_back(taAddress);
         saveStatement(tempFormat, taAddress, nixbpe);
         
@@ -195,7 +195,7 @@ void TextRecord::print() {
     string temp;
     for (int i = 0; i < length; i++) {
 
-        cout << intDecimalToStringHex((addressList.front())/2) <<"\t"<< mnemonicsList.front()<<"\t"<<tAList.front()<<"\t"<< statements.front()<<endl;
+        cout << addressList.front() <<"\t"<< mnemonicsList.front()<<"\t"<<tAList.front()<<"\t"<< statements.front()<<endl;
         mnemonicsList.pop_front();
         addressList.pop_front();
         tAList.pop_front();
