@@ -77,7 +77,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
                 goto LOOKFOROPCODE;
             }
         }
-        cout << opCode << "\t" << nixbpe << endl;
+       // cout << opCode << "\t" << nixbpe << endl;
 
         if (eflag) {
             mnemonicsList.push_back("+"+opcodeTable.getOpcode(opcodeNum));
@@ -96,7 +96,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         taAddress.clear();
     }
     instructions.clear();
-    print();
+    //print();
 }
 
 void TextRecord::saveStatement(int format, string ta, string nixbpe) {
