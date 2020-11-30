@@ -1,7 +1,10 @@
 #include "StatementDecoder.h"
 
-StatementDecoder::StatementDecoder(string s) {
+StatementDecoder::StatementDecoder(string s, int b, int pc) {
     symbolTable.makeTable(s);
+    base = b;
+    progC = pc;
+    fileName = s;
 }
 
 
@@ -69,9 +72,63 @@ string StatementDecoder::registerMnemoic(char x) {
 string StatementDecoder::formatThree(string targetAd, string nixbpe) {
     string temp;
     temp += addressingMode(nixbpe);
-    temp += targetAd;
+    temp += getSymbol(targetAd, nixbpe);
     temp += indexAddressing(nixbpe);
     return temp;
+}
+
+//Base relative		 b=1, p=0 [xx01xx] TA = B + disp
+//Prog C. relative	 b=0, p=1 [xx10xx] TA = PC + disp
+
+//immediate Addres	 n=0, i=1 [01xxxx] TA as operand
+//indirect Address	 n=1, i=0 [10xxxx] word at TA is fetch and used as an address to fetch the operand
+//simple addressin	 n=i [00xxxx] or [11xxxx] TA is the location of the operand
+
+string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
+    TextRecord hexTranslator;
+    int checkSymbol;
+    int size;
+    string ret;
+    string tempGetSymbol;
+    size = format4check(nixbpe);
+    if (nixbpe[2] == '1') {  //PC relative
+        checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
+        progC += 3;
+        checkSymbol += progC;
+        cout << checkSymbol << endl;
+        ret = hexTranslator.intDecimalToStringHex(checkSymbol);
+        tempGetSymbol += ret;
+        cout << tempGetSymbol << endl;
+        //check if symbol
+
+    }
+    else if (nixbpe[3] == '1') {
+
+    }
+    return ret;
+}
+
+string StatementDecoder::getSixLength(string hex) {
+    int length = hex.length();
+    string tempReturn;
+    if (length < 6) {
+        for (int i = 0; i < (6 - length); i++) {
+            tempReturn += '0';
+        }
+        tempReturn += hex;
+    }
+    else {
+        tempReturn = hex;
+    }
+    return tempReturn;
+}
+
+int StatementDecoder::format4check(string nixpbe) {
+    if (nixpbe[5] == '1') {
+        return 4;
+    }
+    else
+        return 3;
 }
 
 
@@ -92,7 +149,7 @@ string StatementDecoder::addressingMode(string nixbpe) {
 string StatementDecoder::indexAddressing(string nixbpe) {
     string x = nixbpe.substr(2, 1);
     if (x == "1") {
-        return ", X";
+        return ",X";
     }
     else {
         return "";

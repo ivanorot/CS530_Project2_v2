@@ -20,10 +20,14 @@ class TextRecord {
         list<string> mnemonicsList;
         list<int> addressList;
         list<string> tAList;
+        list<string> statements;
         string fileName;
+        int base;
         
     public:
+        TextRecord();
         TextRecord(string);
+        void saveStatement(int, string, string);
 
         void print();
             

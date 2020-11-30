@@ -1,16 +1,21 @@
 #include "TextRecord.h"
-TextRecord::TextRecord(string filename) {
-    fileName = filename;
-    addressCounter = 0;
-}
     //Col 1 == T
     //Col 2-7 == Starting Address
     //Col 8-9 == Length of record in bytes
     //Col 10-69 == Object code
 
+TextRecord::TextRecord() {
+    addressCounter = 0;
+}
+
+TextRecord::TextRecord(string filename) {
+    addressCounter = 0;
+    fileName = filename;
+}
+
 
 void TextRecord::readLine(string inputLine) {
-    
+   
     //int lineLength;
     //Do something with the Starting Address
     //move up to the 8th character
@@ -29,6 +34,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
     int tempFormat;
     int opcodeNum;
     int length = 0;
+    
     bool eflag = false;
     bool jumpflag;
     
@@ -84,6 +90,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         tAList.push_back(taAddress);
         recordCounter += length;
         addressCounter += length;
+        saveStatement(tempFormat, taAddress, nixbpe);
         opCode.clear();
         nixbpe.clear();
         taAddress.clear();
@@ -92,13 +99,22 @@ void TextRecord::readInstructionsLoop(string instructions) {
     print();
 }
 
+void TextRecord::saveStatement(int format, string ta, string nixbpe) {
+    StatementDecoder statementDecoder(fileName, base, addressCounter);
+    statements.push_back(statementDecoder.getStatement(format, ta, nixbpe));
+}
+
 void TextRecord::print() {
     int length = mnemonicsList.size();
+   
+    string temp;
     for (int i = 0; i < length; i++) {
-        cout << intDecimalToStringHex((addressList.front())/2) <<"\t"<< mnemonicsList.front()<<"\t"<<tAList.front()<<endl;
+
+        cout << intDecimalToStringHex((addressList.front())/2) <<"\t"<< mnemonicsList.front()<<"\t"<<tAList.front()<<"\t"<< statements.front()<<endl;
         mnemonicsList.pop_front();
         addressList.pop_front();
         tAList.pop_front();
+        statements.pop_front();
     }
 
 }
