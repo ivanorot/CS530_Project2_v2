@@ -199,7 +199,7 @@ void TextRecord::print() {
     string temp;
     for (int i = 0; i < length; i++) {
 
-        cout << addressList.front() <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<"\t"<<instList.front()<<endl;
+        cout << addressList.front()<<"\t"<<"\t" <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<"\t"<<"\t"<<instList.front()<<endl;
         mnemonicsList.pop_front();
         addressList.pop_front();
         tAList.pop_front();
