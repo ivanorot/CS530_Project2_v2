@@ -14,6 +14,7 @@ StatementDecoder::StatementDecoder(string s, int b, int pc) {
 //format 3 = XXX[XXX]
 //format 4 = XXX[XXXXX]
 string StatementDecoder::getStatement(int format, string targetAddress, string nixbpe) {
+    cout << "progC: " << progC << "\t" << progC/2 << endl;
     if (format == 2) {
         return formatTwo(targetAddress);
     }
@@ -100,14 +101,14 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
         }
         
         checkSymbol += (progC/2);
-        //cout << checkSymbol <<"\t";
+        cout << checkSymbol <<"\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
         tempGetSymbol += getSixLength(tempReturn);
-        //cout << tempGetSymbol << "\t";
+        cout << tempGetSymbol << "\t";
         tempReturn.clear();
         tempReturn += checkSymbolFun(tempGetSymbol);
-        //cout << tempReturn << endl;
-        //cout << ".........................." << endl;
+        cout << tempReturn << endl;
+        cout << ".........................." << endl;
         //check if symbol
 
     }
@@ -161,11 +162,11 @@ string StatementDecoder::getSixLength(string hex) {
 
 int StatementDecoder::format4check(string nixpbe) {
     if (nixpbe[5] == '1') {
-        progC += 10;
+        progC += 8;
         return 4;
     }
     else
-        progC += 8;
+        progC += 6;
         return 3;
 }
 
