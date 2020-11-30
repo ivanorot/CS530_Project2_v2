@@ -92,6 +92,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         newLength = checkLiteral(tempString);
         if (newLength > 0) {
             recordCounter += newLength;
+            addressCounter += newLength;
             newLength = 0;
             goto LOOP;
         }

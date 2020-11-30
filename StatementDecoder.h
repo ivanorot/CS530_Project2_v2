@@ -27,6 +27,6 @@ class StatementDecoder {
         string addressingMode(string nixbpe);
         string indexAddressing(string nixbpe);
         string checkSymbolFun(string);
-        
+        string checkLiteralFun(string);
 
 };

@@ -107,6 +107,9 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
         cout << tempGetSymbol << "\t";
         tempReturn.clear();
         tempReturn += checkSymbolFun(tempGetSymbol);
+        if (tempReturn.size() < 1) {
+            tempReturn += checkLiteralFun(tempGetSymbol);
+        }
         cout << tempReturn << endl;
         cout << ".........................." << endl;
         //check if symbol
@@ -131,6 +134,18 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
        //cout << "\t"<< tempReturn << endl;
     }
     return tempReturn;
+}
+
+string StatementDecoder::checkLiteralFun(string address) {
+    int row;
+    string col;
+    tie(row, col) = symbolTable.getRowCol(LITTAB, address);
+    if (row >= 0) {
+        string literal = symbolTable.getData(LITTAB, row, symbolTable.address);
+        return literal;
+    }
+    else
+        return "";
 }
 
 string StatementDecoder::checkSymbolFun(string address) {
