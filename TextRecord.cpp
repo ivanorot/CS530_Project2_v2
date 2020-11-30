@@ -158,7 +158,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         
         if (baseflag) {
             mnemonicsList.push_back("BASE");
-            addressList.push_back(0);
+            addressList.push_back("");
             tAList.push_back("");
             statements.push_back(statements.front());
             baseflag = false;
