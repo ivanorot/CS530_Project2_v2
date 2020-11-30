@@ -86,13 +86,13 @@ string StatementDecoder::formatThree(string targetAd, string nixbpe) {
 
 string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     TextRecord hexTranslator;
-    cout << nixbpe << "\t";
+    //cout << nixbpe << "\t";
     int checkSymbol;
     int size;
     string tempReturn;
     string tempGetSymbol;
     size = format4check(nixbpe);
-    cout << targetAd << endl;
+    //cout << targetAd << endl;
     checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
     if (nixbpe[4] == '1') {  //PC relative
         if (checkSymbol > 2048) {
@@ -100,34 +100,34 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
         }
         
         checkSymbol += (progC/2);
-        cout << checkSymbol <<"\t";
+        //cout << checkSymbol <<"\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
         tempGetSymbol += getSixLength(tempReturn);
-        cout << tempGetSymbol << "\t";
+        //cout << tempGetSymbol << "\t";
         tempReturn.clear();
         tempReturn += checkSymbolFun(tempGetSymbol);
-        cout << tempReturn << endl;
-        cout << ".........................." << endl;
+        //cout << tempReturn << endl;
+        //cout << ".........................." << endl;
         //check if symbol
 
     }
     else if (nixbpe[3] == '1') {
         checkSymbol += (base / 2);
-        cout << checkSymbol << "\t";
+        //cout << checkSymbol << "\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
         tempGetSymbol += getSixLength(tempReturn);
-        cout << tempGetSymbol <<"\t";
+        //cout << tempGetSymbol <<"\t";
         tempReturn.clear();
         tempReturn += checkSymbolFun(tempGetSymbol);
-        cout << tempReturn<<endl;
-        cout << ".........................." << endl;
+        //cout << tempReturn<<endl;
+        //cout << ".........................." << endl;
 
 
     }
     else {
        tempGetSymbol += getSixLength(targetAd);
        tempReturn += checkSymbolFun(tempGetSymbol);
-       cout << "\t"<< tempReturn << endl;
+       //cout << "\t"<< tempReturn << endl;
     }
     return tempReturn;
 }

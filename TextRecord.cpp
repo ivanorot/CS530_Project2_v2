@@ -158,7 +158,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         taAddress.clear();
     }
     instructions.clear();
-    //print();
+    print();
 }
 
 void TextRecord::checkBase(string mneumonic) {
