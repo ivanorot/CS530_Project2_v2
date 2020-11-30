@@ -116,7 +116,8 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
 
     }
     else if (nixbpe[3] == '1') {
-        checkSymbol += (base / 2);
+        cout << base<<endl;
+        checkSymbol += (base);
         //cout << checkSymbol << "\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
         tempGetSymbol += getSixLength(tempReturn);
