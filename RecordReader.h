@@ -33,6 +33,7 @@ class RecordReader {
     private:
         ifstream inputFile;
         string programName;
+        string programLength;
     public:
         void inputReader(string);
 };

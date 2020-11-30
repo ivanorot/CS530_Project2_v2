@@ -86,6 +86,7 @@ void RecordReader::inputReader(string fileName) {
         
         if (inputLine[0] == 'H') {
              programName += (inputLine.substr(1, 5));
+             programLength += (inputLine.substr(13, 5));
              cout << programName << endl;
         }
         else if (inputLine[0] == 'T') {
@@ -105,5 +106,6 @@ void RecordReader::inputReader(string fileName) {
 //           //hhg
 //       }
    }
+    textRecord.printLis(programLength);
 }
 
