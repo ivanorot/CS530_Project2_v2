@@ -123,6 +123,7 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     else {
        tempGetSymbol += getSixLength(targetAd);
        tempReturn += checkSymbolFun(tempGetSymbol);
+       cout << tempReturn << endl;
     }
     return tempReturn;
 }
