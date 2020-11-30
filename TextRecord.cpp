@@ -115,20 +115,24 @@ void TextRecord::readInstructionsLoop(string instructions) {
             if (nixbpe[5] == '1') {
                 length = 8;
                 eflag = true;
+                instList.push_back(instructions.substr(recordCounter, 8));
                 taAddress += instructions.substr(recordCounter + 3, 5);
             }
             else {
                 length = 6;
+                instList.push_back(instructions.substr(recordCounter, 6));
                 taAddress += instructions.substr(recordCounter + 3, 3);
             }
         }
         else if (tempFormat == 2) {
             length = 4;
+            instList.push_back(instructions.substr(recordCounter, 4));
             taAddress += instructions.substr(recordCounter + 2, 2);
             
         }
         else if (tempFormat == 1) {
             length = 2;
+            instList.push_back(instructions.substr(recordCounter, 2));
         }
         else {
             opCode.clear();
@@ -195,11 +199,12 @@ void TextRecord::print() {
     string temp;
     for (int i = 0; i < length; i++) {
 
-        cout << addressList.front() <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<endl;
+        cout << addressList.front() <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<"\t"<<instList.front()<<endl;
         mnemonicsList.pop_front();
         addressList.pop_front();
         tAList.pop_front();
         statements.pop_front();
+        instList.pop_front();
     }
 
 }

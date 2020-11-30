@@ -28,6 +28,8 @@ class TextRecord {
         SymbolTable sym;
         string fileName;
         int base;
+        list<string> instList;
+
         
     public:
 
