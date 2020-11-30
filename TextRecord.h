@@ -33,7 +33,9 @@ class TextRecord {
 
 
         TextRecord();
+
         TextRecord(string);
+
         void saveStatement(int, string, string);
 
         string getSixLength(string);
@@ -43,6 +45,8 @@ class TextRecord {
         void readLine(string inputLine);
         
         int checkLiteral(string);
+
+        void checkBase(string mneumonic);
         
         void readInstructionsLoop(string);
         

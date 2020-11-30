@@ -78,6 +78,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
     int tempFormat;
     int opcodeNum;
     int length = 0;
+    string mneumonic;
     
     bool eflag = false;
     bool jumpflag;
@@ -136,13 +137,15 @@ void TextRecord::readInstructionsLoop(string instructions) {
             }
         }
        // cout << opCode << "\t" << nixbpe << endl;
+        mneumonic += opcodeTable.getOpcode(opcodeNum);
+        checkBase(mneumonic);
 
         if (eflag) {
-            mnemonicsList.push_back("+"+opcodeTable.getOpcode(opcodeNum));
+            mnemonicsList.push_back("+"+mneumonic);
             eflag = false;
         }
         else {
-            mnemonicsList.push_back(opcodeTable.getOpcode(opcodeNum));
+            mnemonicsList.push_back(mneumonic);
         }
         addressList.push_back(addressCounter);
         tAList.push_back(taAddress);
@@ -156,6 +159,12 @@ void TextRecord::readInstructionsLoop(string instructions) {
     }
     instructions.clear();
     //print();
+}
+
+void TextRecord::checkBase(string mneumonic) {
+    if (mneumonic == "LDB") {
+        base = addressCounter;
+    }
 }
 
 void TextRecord::saveStatement(int format, string ta, string nixbpe) {

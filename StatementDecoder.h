@@ -26,6 +26,7 @@ class StatementDecoder {
         string formatThree(string targetAd, string nixbpe);
         string addressingMode(string nixbpe);
         string indexAddressing(string nixbpe);
+        string checkSymbolFun(string);
         
 
 };

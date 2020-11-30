@@ -88,29 +88,55 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     TextRecord hexTranslator;
     int checkSymbol;
     int size;
-    string ret;
+    string tempReturn;
     string tempGetSymbol;
     size = format4check(nixbpe);
     cout << targetAd << endl;
+    checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
     if (nixbpe[2] == '1') {  //PC relative
-        checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
         checkSymbol += (progC/2);
         cout << checkSymbol << endl;
-        ret = hexTranslator.intDecimalToStringHex(checkSymbol);
-        tempGetSymbol += ret;
+        tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
+
+
+        tempGetSymbol += getSixLength(tempReturn);
         
-        cout << getSixLength(tempGetSymbol) << endl;
+        cout << tempGetSymbol << endl;
+        tempReturn.clear();
+        tempReturn += checkSymbolFun(tempGetSymbol);
+        cout << tempReturn << endl;
         cout << ".........................." << endl;
         //check if symbol
 
     }
     else if (nixbpe[3] == '1') {
+        checkSymbol += (base / 2);
+        tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
+        tempGetSymbol += getSixLength(tempReturn);
+        cout << tempGetSymbol << endl;
+        tempReturn.clear();
+        tempReturn += checkSymbolFun(tempGetSymbol);
+        cout << tempReturn<<endl;
+        cout << ".........................." << endl;
+
 
     }
     else {
-        ret += targetAd;
+        tempReturn += targetAd;
     }
-    return ret;
+    return tempReturn;
+}
+
+string StatementDecoder::checkSymbolFun(string address) {
+    int row;
+    string col;
+    tie(row, col) = symbolTable.getRowCol(SYMTAB, address);
+    if (row >= 0) {
+        string symbol = symbolTable.getData(SYMTAB, row, symbolTable.symbol);
+        return symbol;
+    }
+    else
+        return "";
 }
 
 string StatementDecoder::getSixLength(string hex) {
