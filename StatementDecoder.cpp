@@ -22,8 +22,8 @@ string StatementDecoder::getStatement(int format, string targetAddress, string n
     }
 }
 
-//Base relative		 b=1, p=0 [xx01xx] TA = B + disp
-//Prog C. relative	 b=0, p=1 [xx10xx] TA = PC + disp
+//Base relative		 b=1, p=0 [xxx10x] TA = B + disp
+//Prog C. relative	 b=0, p=1 [xxx01x] TA = PC + disp
 
 //immediate Addres	 n=0, i=1 [01xxxx] TA as operand
 //indirect Address	 n=1, i=0 [10xxxx] word at TA is fetch and used as an address to fetch the operand
@@ -77,8 +77,8 @@ string StatementDecoder::formatThree(string targetAd, string nixbpe) {
     return temp;
 }
 
-//Base relative		 b=1, p=0 [xx01xx] TA = B + disp
-//Prog C. relative	 b=0, p=1 [xx10xx] TA = PC + disp
+//Base relative		 b=1, p=0 [xxx10x] TA = B + disp
+//Prog C. relative	 b=0, p=1 [xxx01x] TA = PC + disp
 
 //immediate Addres	 n=0, i=1 [01xxxx] TA as operand
 //indirect Address	 n=1, i=0 [10xxxx] word at TA is fetch and used as an address to fetch the operand
@@ -94,7 +94,7 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     size = format4check(nixbpe);
     cout << targetAd << endl;
     checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
-    if (nixbpe[2] == '1') {  //PC relative
+    if (nixbpe[4] == '1') {  //PC relative
         checkSymbol += (progC/2);
         cout << checkSymbol <<"\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
