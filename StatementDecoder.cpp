@@ -3,7 +3,7 @@
 StatementDecoder::StatementDecoder(string s, int b, int pc) {
     symbolTable.makeTable(s);
     base = b;
-    progC = pc+8;
+    progC = pc;
     fileName = s;
 }
 
@@ -161,9 +161,11 @@ string StatementDecoder::getSixLength(string hex) {
 
 int StatementDecoder::format4check(string nixpbe) {
     if (nixpbe[5] == '1') {
+        progC += 8;
         return 4;
     }
     else
+        progC += 6;
         return 3;
 }
 
