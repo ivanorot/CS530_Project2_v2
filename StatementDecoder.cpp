@@ -95,6 +95,10 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     cout << targetAd << endl;
     checkSymbol = hexTranslator.stringHexToIntDecimal(targetAd);
     if (nixbpe[4] == '1') {  //PC relative
+        if (checkSymbol > 2048) {
+            checkSymbol -= 4096;
+        }
+        
         checkSymbol += (progC/2);
         cout << checkSymbol <<"\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
@@ -123,7 +127,7 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     else {
        tempGetSymbol += getSixLength(targetAd);
        tempReturn += checkSymbolFun(tempGetSymbol);
-       cout << tempReturn << endl;
+       cout << "\t"<< tempReturn << endl;
     }
     return tempReturn;
 }
