@@ -153,6 +153,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         recordCounter += length;
         addressCounter += length;
         
+        mneumonic.clear();
         opCode.clear();
         nixbpe.clear();
         taAddress.clear();
