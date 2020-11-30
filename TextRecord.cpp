@@ -137,7 +137,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
                 goto LOOKFOROPCODE;
             }
         }
-        cout << opCode << "\t" << nixbpe << endl;
+       // cout << opCode << "\t" << nixbpe << endl;
         mneumonic += opcodeTable.getOpcode(opcodeNum);
         checkBase(mneumonic);
 
@@ -164,9 +164,12 @@ void TextRecord::readInstructionsLoop(string instructions) {
 }
 
 void TextRecord::checkBase(string mneumonic) {
+    cout << mneumonic<<"\t";
     if (mneumonic == "LDB") {
         base = addressCounter;
+        cout << base<<endl;
     }
+    cout << endl;
 }
 
 void TextRecord::saveStatement(int format, string ta, string nixbpe) {

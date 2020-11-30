@@ -101,17 +101,17 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
         }
         
         checkSymbol += (progC/2);
-        cout << checkSymbol <<"\t";
+        //cout << checkSymbol <<"\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);
         tempGetSymbol += getSixLength(tempReturn);
-        cout << tempGetSymbol << "\t";
+        //cout << tempGetSymbol << "\t";
         tempReturn.clear();
         tempReturn += checkSymbolFun(tempGetSymbol);
         if (tempReturn.size() < 1) {
             tempReturn += checkLiteralFun(tempGetSymbol);
         }
-        cout << tempReturn << endl;
-        cout << ".........................." << endl;
+        //cout << tempReturn << endl;
+        //cout << ".........................." << endl;
         //check if symbol
 
     }
