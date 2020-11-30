@@ -79,6 +79,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
     int opcodeNum;
     int length = 0;
     string mneumonic;
+    bool baseflag;
     
     bool eflag = false;
     bool jumpflag;
@@ -139,7 +140,8 @@ void TextRecord::readInstructionsLoop(string instructions) {
         }
        // cout << opCode << "\t" << nixbpe << endl;
         mneumonic += opcodeTable.getOpcode(opcodeNum);
-        if (checkBase(mneumonic)) {
+        baseflag = checkBase(mneumonic);
+        if (baseflag) {
             base = stringHexToIntDecimal(taAddress);
         }
 
@@ -153,8 +155,18 @@ void TextRecord::readInstructionsLoop(string instructions) {
         addressList.push_back(addressCounter);
         tAList.push_back(taAddress);
         saveStatement(tempFormat, taAddress, nixbpe);
+        
+        if (baseflag) {
+            mnemonicsList.push_back("BASE");
+            addressList.push_back(0);
+            tAList.push_back("");
+            statements.push_back(statements.front());
+            baseflag = false;
+        }
+        
         recordCounter += length;
         addressCounter += length;
+
         
         mneumonic.clear();
         opCode.clear();
@@ -162,7 +174,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         taAddress.clear();
     }
     instructions.clear();
-    //print();
+    print();
 }
 
 bool TextRecord::checkBase(string mneumonic) {

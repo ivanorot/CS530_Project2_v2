@@ -106,6 +106,6 @@ void RecordReader::inputReader(string fileName) {
 //           //hhg
 //       }
    }
-    textRecord.printLis(programLength);
+    //textRecord.printLis(programLength);
 }
 
