@@ -160,7 +160,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
             mnemonicsList.push_back("BASE");
             addressList.push_back("");
             tAList.push_back("");
-            statements.push_back(statements.front());
+            statements.push_back(statements.back());
             baseflag = false;
         }
         
@@ -195,7 +195,7 @@ void TextRecord::print() {
     string temp;
     for (int i = 0; i < length; i++) {
 
-        cout << addressList.front() <<"\t"<< mnemonicsList.front()<<"\t"<<tAList.front()<<"\t"<< statements.front()<<endl;
+        cout << addressList.front() <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<endl;
         mnemonicsList.pop_front();
         addressList.pop_front();
         tAList.pop_front();
