@@ -152,7 +152,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         else {
             mnemonicsList.push_back(mneumonic);
         }
-        addressList.push_back(addressCounter);
+        addressList.push_back(getSixLength(intDecimalToStringHex(addressCounter)));
         tAList.push_back(taAddress);
         saveStatement(tempFormat, taAddress, nixbpe);
         
@@ -203,8 +203,7 @@ void TextRecord::print() {
     }
 
 }
-
-void TextRecord::printLis(string programLength) {
+/*void TextRecord::printLis(string programLength) {
     int length = stringHexToIntDecimal(programLength);
     string address;
     int i = 0;
@@ -251,9 +250,9 @@ void TextRecord::printLis(string programLength) {
         }
     }
 
-}
+}*/
 
-list<int> TextRecord::returnAddress() {
+list<string> TextRecord::returnAddress() {
     //int length = addressList.size();
     //for (int i = 0; i < length; i++) {
     //    intDecimalToStringHex((addressList.front()) / 2);

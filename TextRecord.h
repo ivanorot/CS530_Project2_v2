@@ -22,7 +22,7 @@ class TextRecord {
         int recordLength;
         OpcodeTable opcodeTable;
         list<string> mnemonicsList;
-        list<int> addressList;
+        list<string> addressList;
         list<string> tAList;
         list<string> statements;
         SymbolTable sym;
@@ -55,7 +55,7 @@ class TextRecord {
         
         int findOpcodeFormat(int);
 
-        list<int> returnAddress();
+        list<string> returnAddress();
         
         string stringHexToStringBinary(string);
         
