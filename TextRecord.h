@@ -30,9 +30,13 @@ class TextRecord {
         int base;
         
     public:
+
+
         TextRecord();
         TextRecord(string);
         void saveStatement(int, string, string);
+
+        string getSixLength(string);
 
         void print();
             

@@ -54,6 +54,21 @@ int TextRecord::checkLiteral(string address) {
     return 0;
 }
 
+string TextRecord::getSixLength(string hex) {
+    int length = hex.length();
+    string tempReturn;
+    if (length < 6) {
+        for (int i = 0; i < (6 - length); i++) {
+            tempReturn += '0';
+        }
+        tempReturn += hex;
+    }
+    else {
+        tempReturn = hex;
+    }
+    return tempReturn;
+}
+
 void TextRecord::readInstructionsLoop(string instructions) {
     int recordCounter = 0;
     string tempString;
@@ -66,8 +81,22 @@ void TextRecord::readInstructionsLoop(string instructions) {
     
     bool eflag = false;
     bool jumpflag;
-    
+    string tempAddress;
+    int newLength;
+
+    LOOP:
     while (recordCounter < recordLength-3) {
+        tempAddress = intDecimalToStringHex(recordCounter / 2);
+        tempString = getSixLength(tempAddress);
+        newLength = checkLiteral(tempString);
+        if (newLength > 0) {
+            recordCounter += newLength;
+            newLength = 0;
+            goto LOOP;
+        }
+        tempAddress.clear();
+        tempString.clear();
+
         jumpflag = true;
         tempString = instructions.substr(recordCounter, 3);
         tempString = stringHexToStringBinary(tempString);
