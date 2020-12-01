@@ -16,7 +16,7 @@
    * GUIDING ALGORITHM:
    * 1.
    *****************************************************************************/
-#pragma once
+
 #include "TextRecord.h"
     //Col 1 == T
     //Col 2-7 == Starting Address

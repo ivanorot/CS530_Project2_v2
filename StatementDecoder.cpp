@@ -16,7 +16,7 @@
    * GUIDING ALGORITHM:
    * 1.
    *****************************************************************************/
-#pragma once
+
 #include "StatementDecoder.h"
 
 StatementDecoder::StatementDecoder(string s, int b, int pc) {

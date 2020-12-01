@@ -16,7 +16,7 @@
    * GUIDING ALGORITHM:
    * 1.
    *****************************************************************************/
-#pragma once
+
 #include "OpcodeTable.h"
 
  int OpcodeTable::checkIfOpcode(string inOpcode) {
