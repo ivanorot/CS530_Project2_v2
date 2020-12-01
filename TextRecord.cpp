@@ -179,7 +179,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
         taAddress.clear();
     }
     instructions.clear();
-    print();
+    //print();
 }
 
 bool TextRecord::checkBase(string mneumonic) {
@@ -194,7 +194,7 @@ void TextRecord::saveStatement(int format, string ta, string nixbpe) {
     statements.push_back(statementDecoder.getStatement(format, ta, nixbpe));
 }
 
-void TextRecord::print() {
+void TextRecord::print(string progName, string startAdd) {
     string lis = fileName + ".lis";
     const char* listing = lis.c_str();
     
@@ -207,9 +207,11 @@ void TextRecord::print() {
     int length = mnemonicsList.size();
     
     string temp;
+    lisFile << "\t" <<progName<< "\t"<<"START"<<"\t"<<startAdd<<endl;
+    sicFile << progName << "\t" << "START" << "\t" << startAdd << endl;
     for (int i = 0; i < length; i++) {
 
-        cout << addressList.front()<<"\t"<<"\t" <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<"\t"<<"\t"<<instList.front()<<endl;
+        //cout << addressList.front()<<"\t"<<"\t" <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<"\t"<<"\t"<<instList.front()<<endl;
         
         lisFile << addressList.front() << "\t";
         lisFile << "\t" << "\t";
@@ -227,6 +229,10 @@ void TextRecord::print() {
         statements.pop_front();
         instList.pop_front();
     }
+
+    lisFile << "\t" <<"\t"<< "\t" << "END" << "\t" << startAdd << endl;
+    sicFile << "\t" << "\t" << "END" << "\t" << startAdd << endl;
+
     lisFile.close();
     sicFile.close();
 

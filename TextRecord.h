@@ -47,7 +47,7 @@ class TextRecord {
 
         string getSixLength(string);
 
-        void print();
+        void print(string, string);
             
         void readLine(string inputLine);
         

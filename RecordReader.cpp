@@ -105,6 +105,7 @@ void RecordReader::inputReader(string fileName) {
 //           //2-7 Address first executable instruction
 //           //hhg
 //       }
+        textRecord.print(programName, "0");
    }
     //textRecord.printLis(programLength);
 }
