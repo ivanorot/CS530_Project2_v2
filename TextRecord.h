@@ -37,7 +37,7 @@ class TextRecord {
         
     public:
 
-        void printLis(string);
+        //void printLis(string);
 
         TextRecord();
 
