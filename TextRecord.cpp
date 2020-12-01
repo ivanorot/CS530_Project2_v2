@@ -214,12 +214,12 @@ void TextRecord::print(string progName, string startAdd) {
         //cout << addressList.front()<<"\t"<<"\t" <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<"\t"<<"\t"<<instList.front()<<endl;
         
         lisFile << addressList.front() << "\t";
-        lisFile << "\t" << "\t";
+        lisFile << "\t";
         lisFile << mnemonicsList.front() << "\t";
         lisFile << statements.front() << "\t" << "\t";
         lisFile << instList.front() << endl;
         
-        sicFile << "\t" << "\t";
+        sicFile << "\t";
         sicFile << mnemonicsList.front() << "\t";
         sicFile << statements.front() << endl;
         
