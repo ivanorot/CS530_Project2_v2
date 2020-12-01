@@ -13,6 +13,7 @@
   * PROGRAM DESCRIPTION:
   * This header file includes type definitions used for the RecordReader 
   *****************************************************************************/
+#pragma once
 
 #ifndef RECORDREADER_H
 #define RECORDREADER_H

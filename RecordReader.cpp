@@ -16,6 +16,7 @@
   * GUIDING ALGORITHM:
   * 1. 
   *****************************************************************************/
+#pragma once
 
 #include "RecordReader.h"
 
@@ -51,25 +52,7 @@ void RecordReader::inputReader(string fileName) {
     cout << sym.getData(SYMTAB,foundrow,sym.symbol);
     cout << endl << endl;
     
-//    cout << endl << endl << "Testing SYMTAB:" << endl;
-//    cout << sym.getData(SYMTAB,0,"Symbol") << endl;
-//    cout << sym.getData(SYMTAB,0,"Value") << endl;
-//    cout << sym.getData(SYMTAB,0,"Flags:") << endl;
-//    cout << sym.getData(SYMTAB,4,"Symbol") << endl; 
-//    cout << sym.getData(SYMTAB,4,"Value") << endl;
-//    cout << sym.getData(SYMTAB,4,"Flags:") << endl;
-//    
-//    cout << endl << endl << "Using getByVolValue function:" << endl;
-//    cout << sym.getByColValue(SYMTAB,"Symbol","TABLE2","Value") << endl;
-//    cout << sym.getByColValue(SYMTAB,"Symbol","TABLE2","Flags:") << endl;
-//    
-//    cout << endl << endl << "Testing LITTAB:" << endl;
-//    cout << sym.getData(LITTAB,0,"Name") << endl;
-//    cout << sym.getData(LITTAB,0,"Literal") << endl;
-//    cout << sym.getData(LITTAB,0,"Length") << endl;
-//    cout << sym.getData(LITTAB,0,"Address:") << endl << endl; 
-    //SymbolTable symtab(fileName);
-   // cout << endl << symtab.getData(2,"Symbol") << endl << endl;
+
     
     if (!inputFile.is_open()) {
         cout << "Error with file\n";
@@ -96,15 +79,7 @@ void RecordReader::inputReader(string fileName) {
             //Col 10-69 == Object code
             textRecord.readLine(inputLine);
         }
-//       else if (inputLine[0] == 'M') {
-//           //2-7 starting location of the address to be
-//           //modified(relative to the begging of the program)
-//           //8-9length of the address field to be modified
-//       }
-//       else if (inputLine[0] == 'E') { 
-//           //2-7 Address first executable instruction
-//           //hhg
-//       }
+
        
    }
     //textRecord.printLis(programLength);

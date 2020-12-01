@@ -1,3 +1,22 @@
+/************************************************
+ * COURSE:          CS-530 Systems Programming
+ * SECTION:         01 Synchronous TTh 1900-2015
+ * PROGRAM #:       2
+ * LAST MODIFIED:   [SUBMISSION DATE]
+ * @author Ivan Orozco 82217656 cssc3012
+ * @author Mariano Hernandez 820450001 cssc3062
+ ************************************************/
+
+ /******************************************************************************
+   * Program 02: main.cpp
+   *****************************************************************************
+   * PROGRAM DESCRIPTION:
+   * Starting point for the XE Disassembler Program
+   *****************************************************************************
+   * GUIDING ALGORITHM:
+   * 1.
+   *****************************************************************************/
+#pragma once
 #include "TextRecord.h"
     //Col 1 == T
     //Col 2-7 == Starting Address
@@ -17,9 +36,6 @@ TextRecord::TextRecord(string filename) {
 
 void TextRecord::readLine(string inputLine) {
    
-    //int lineLength;
-    //Do something with the Starting Address
-    //move up to the 8th character
     startingAddress = stringHexToIntDecimal(inputLine.substr(1, 6));
     recordLength = 2*stringHexToIntDecimal(inputLine.substr(7, 2));
     readInstructionsLoop(inputLine.substr(9, recordLength));
@@ -237,54 +253,7 @@ void TextRecord::print(string progName, string startAdd) {
     sicFile.close();
 
 }
-/*void TextRecord::printLis(string programLength) {
-    int length = stringHexToIntDecimal(programLength);
-    string address;
-    int i = 0;
-    string temp;
-    int symbolRowCount = 0;
-    int litRowCount = 0;
-    bool instructionCheck;
-    bool symbolCheck;
-    bool litCheck;
 
-    while(i<length){
-        temp = intDecimalToStringHex(i);
-        address = getSixLength(temp);
-        instructionCheck = (i == addressList.front());
-        symbolCheck = (address==checkSymbolAddress(symbolRowCount));
-        litCheck = (address == checkLiteralAddress(litRowCount));
-
-        if (symbolCheck == true && instructionCheck == true) {
-            cout << address << "\t" << checkSymbolFun(symbolRowCount) << "\t" << mnemonicsList.front() << statements.front() << endl;
-            if (checkBase(mnemonicsList.front())) {
-                cout << "\t" << "\t" << "\t" << "\t" << "BASE" << getSymbolwithStringAddress(getSixLength(intDecimalToStringHex(base))) << endl;
-            }
-            symbolRowCount++;
-            mnemonicsList.pop_front();
-            statements.pop_front();
-
-        }
-        else if (instructionCheck == true) {
-            cout << address << "\t" << "\t" << "\t" << mnemonicsList.front() << statements.front()<<endl;
-            if (checkBase(mnemonicsList.front())) {
-                cout << "\t" << "\t" << "\t" << "\t" << "BASE" << getSymbolwithStringAddress(getSixLength(intDecimalToStringHex(base))) << endl;
-            }
-            mnemonicsList.pop_front();
-            statements.pop_front();
-        }
-
-        else if (symbolCheck == true) {
-            cout << address << "\t" << checkSymbolFun(symbolRowCount) << "\t" << "\t" << "\t"<<endl;
-            symbolRowCount++;
-        }
-        else if (litCheck) {
-            cout << address << "\t" << "\t" << "\t" << "*" << checkLiteralFun(litRowCount) << endl;
-            litRowCount++;
-        }
-    }
-
-}*/
 
 list<string> TextRecord::returnAddress() {
     //int length = addressList.size();

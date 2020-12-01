@@ -1,3 +1,22 @@
+/************************************************
+ * COURSE:          CS-530 Systems Programming
+ * SECTION:         01 Synchronous TTh 1900-2015
+ * PROGRAM #:       2
+ * LAST MODIFIED:   [SUBMISSION DATE]
+ * @author Ivan Orozco 82217656 cssc3012
+ * @author Mariano Hernandez 820450001 cssc3062
+ ************************************************/
+
+ /******************************************************************************
+   * Program 02: main.cpp
+   *****************************************************************************
+   * PROGRAM DESCRIPTION:
+   * Starting point for the XE Disassembler Program
+   *****************************************************************************
+   * GUIDING ALGORITHM:
+   * 1.
+   *****************************************************************************/
+#pragma once
 #include "SymbolTable.h"
 
 /******************************* Metadata Class *******************************/
@@ -45,25 +64,6 @@ tuple<int,string> SymbolTable::getRowCol(int table, string value) {
    
 }
 
-
-//int getRowCol(int table, string value) {
-//     if (SYMTAB == table) {
-//        for (unsigned int i = 0; i < symboltable.size(); i++) {
-//            if (symboltable[i].getData() == value)
-//                return symboltable[i].getRow();
-//        }
-//        return -1;
-//    }
-//    
-//    if (LITTAB == table) {
-//        for (unsigned int i = 0; i < literaltable.size(); i++) {
-//            if (literaltable[i].getData() == value)
-//                return literaltable[i].getRow();
-//        }
-//        return -1;
-//    }
-//   
-//}
 
 
 string SymbolTable::getData(int table, int row, string column) {
