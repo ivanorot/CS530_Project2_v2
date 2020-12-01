@@ -2,6 +2,7 @@
 #define TEXTRECORD_H
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <cmath>
 #include <list>
@@ -29,6 +30,9 @@ class TextRecord {
         string fileName;
         int base;
         list<string> instList;
+        
+        ofstream lisFile;
+        ofstream sicFile;
 
         
     public:

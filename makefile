@@ -27,5 +27,5 @@ StatementDecoder.o: StatementDecoder.cpp
 	g++ -std=c++11 -c StatementDecoder.cpp
 
 clean:
-	rm *.o dis
+	rm *.o dis *.sic *.lis
 

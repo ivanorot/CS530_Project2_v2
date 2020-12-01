@@ -195,18 +195,40 @@ void TextRecord::saveStatement(int format, string ta, string nixbpe) {
 }
 
 void TextRecord::print() {
+    string lis = fileName + ".lis";
+    const char* listing = lis.c_str();
+    
+    string sic = fileName + ".sic";
+    const char* src = sic.c_str();
+    
+    lisFile.open(listing);
+    sicFile.open(src);
+    
     int length = mnemonicsList.size();
-   
+    
     string temp;
     for (int i = 0; i < length; i++) {
 
         cout << addressList.front()<<"\t"<<"\t" <<"\t"<< mnemonicsList.front()<<"\t"<< statements.front()<<"\t"<<"\t"<<instList.front()<<endl;
+        
+        lisFile << addressList.front() << "\t";
+        lisFile << "\t" << "\t";
+        lisFile << mnemonicsList.front() << "\t";
+        lisFile << statements.front() << "\t" << "\t";
+        lisFile << instList.front() << endl;
+        
+        sicFile << "\t" << "\t";
+        sicFile << mnemonicsList.front() << "\t";
+        sicFile << statements.front() << endl;
+        
         mnemonicsList.pop_front();
         addressList.pop_front();
         tAList.pop_front();
         statements.pop_front();
         instList.pop_front();
     }
+    lisFile.close();
+    sicFile.close();
 
 }
 /*void TextRecord::printLis(string programLength) {
