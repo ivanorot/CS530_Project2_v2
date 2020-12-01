@@ -165,6 +165,7 @@ void TextRecord::readInstructionsLoop(string instructions) {
             addressList.push_back("");
             tAList.push_back("");
             statements.push_back(statements.back());
+            instList.push_back("");
             baseflag = false;
         }
         
