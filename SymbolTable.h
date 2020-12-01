@@ -2,24 +2,20 @@
  * COURSE:          CS-530 Systems Programming
  * SECTION:         01 Synchronous TTh 1900-2015
  * PROGRAM #:       2
- * LAST MODIFIED:   [SUBMISSION DATE]
+ * LAST MODIFIED:   30 November 2020
  * @author Ivan Orozco 82217656 cssc3012
  * @author Mariano Hernandez 820450001 cssc3062
  ************************************************/
 
  /******************************************************************************
-   * Program 02: main.cpp
+   * Program 02: SymbolTable.cpp
    *****************************************************************************
    * PROGRAM DESCRIPTION:
-   * Starting point for the XE Disassembler Program
-   *****************************************************************************
-   * GUIDING ALGORITHM:
-   * 1.
+   * This header file includes type definitions used for the SymbolTable
    *****************************************************************************/
-#pragma once
+
 #ifndef _SYMBOLTABLE_H
 #define _SYMBOLTABLE_H
-
 
 #include <iostream>
 #include <string>
@@ -60,11 +56,6 @@ class SymbolTable {
         
         void set(int, int, string, string);
         
-        
-        //string fileName;       //prev
-        //string *symbolNames;   //prev
-        //int symbolAddress[0];  //prev
-    
     public:
         void makeTable(string);
         string symbol, value, flags;
@@ -74,7 +65,6 @@ class SymbolTable {
         SymbolTable(string);
         
         tuple<int,string> getRowCol(int, string);
-        //int getRowCol(int, string);
         string getData(int, int, string);
         string getByColValue(int, string, string, string);
 };

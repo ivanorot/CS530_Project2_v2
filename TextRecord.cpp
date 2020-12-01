@@ -2,19 +2,17 @@
  * COURSE:          CS-530 Systems Programming
  * SECTION:         01 Synchronous TTh 1900-2015
  * PROGRAM #:       2
- * LAST MODIFIED:   [SUBMISSION DATE]
+ * LAST MODIFIED:   30 November 2020
  * @author Ivan Orozco 82217656 cssc3012
  * @author Mariano Hernandez 820450001 cssc3062
  ************************************************/
 
  /******************************************************************************
-   * Program 02: main.cpp
+   * Program 02: TextRecord.cpp
    *****************************************************************************
    * PROGRAM DESCRIPTION:
-   * Starting point for the XE Disassembler Program
-   *****************************************************************************
-   * GUIDING ALGORITHM:
-   * 1.
+   * Takes in the text record and decodes it instruction by instruction and
+   * does a final output of the .sic and .lis files
    *****************************************************************************/
 
 #include "TextRecord.h"

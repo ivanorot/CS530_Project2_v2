@@ -2,24 +2,22 @@
  * COURSE:          CS-530 Systems Programming
  * SECTION:         01 Synchronous TTh 1900-2015
  * PROGRAM #:       2
- * LAST MODIFIED:   [SUBMISSION DATE]
+ * LAST MODIFIED:   30 November 2020
  * @author Ivan Orozco 82217656 cssc3012
  * @author Mariano Hernandez 820450001 cssc3062
  ************************************************/
 
  /******************************************************************************
-   * Program 02: main.cpp
+   * Program 02: SymbolTable.cpp
    *****************************************************************************
    * PROGRAM DESCRIPTION:
-   * Starting point for the XE Disassembler Program
-   *****************************************************************************
-   * GUIDING ALGORITHM:
-   * 1.
+   * Structure for two user accessible tables, SYMTAB and LITTAB
    *****************************************************************************/
+
 #include "SymbolTable.h"
 
 /******************************* Metadata Class *******************************/
-
+// underlying structure to store information from the .sym file
 Metadata::Metadata() {}
 
 Metadata::Metadata(int number, string name, string data) {
@@ -43,7 +41,7 @@ SymbolTable::SymbolTable(string fileName) {
 }
 
 
-
+// Get the row and column of a given value if found in the table
 tuple<int,string> SymbolTable::getRowCol(int table, string value) {
      if (SYMTAB == table) {
         for (unsigned int i = 0; i < symboltable.size(); i++) {
@@ -64,7 +62,7 @@ tuple<int,string> SymbolTable::getRowCol(int table, string value) {
 }
 
 
-
+// Get data in table given a row and column
 string SymbolTable::getData(int table, int row, string column) {
     if (SYMTAB == table) {
         for (unsigned int i = 0; i < symboltable.size(); i++) {
@@ -85,7 +83,7 @@ string SymbolTable::getData(int table, int row, string column) {
     }
 }
 
-
+// Given a column, get data next to a another given value and it’s column
 string SymbolTable::getByColValue(int table, string col1, string data, string col2) {
     if (SYMTAB == table) {
         int row;
@@ -136,12 +134,13 @@ string SymbolTable::getByColValue(int table, string col1, string data, string co
     }
 }
 
-
+// store data in table
 void SymbolTable::set(int table, int row, string column, string data) {
     if (SYMTAB == table) symboltable.push_back(Metadata(row, column, data));
     if (LITTAB == table) literaltable.push_back(Metadata(row, column, data));
 }
 
+// create two user accessible tables: SYMTAB & LITTAB
 void SymbolTable::makeTable(string fileName) {
     string file = fileName + ".sym";
     const char* symbolFile = file.c_str();

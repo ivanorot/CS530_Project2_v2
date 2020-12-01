@@ -2,7 +2,7 @@
  * COURSE:          CS-530 Systems Programming
  * SECTION:         01 Synchronous TTh 1900-2015
  * PROGRAM #:       2
- * LAST MODIFIED:   [SUBMISSION DATE]
+ * LAST MODIFIED:   30 November 2020
  * @author Ivan Orozco 82217656 cssc3012
  * @author Mariano Hernandez 820450001 cssc3062
  ************************************************/
@@ -11,58 +11,28 @@
   * Program 02: RecordReader.cpp
   *****************************************************************************
   * PROGRAM DESCRIPTION:
-  * 
-  *****************************************************************************
-  * GUIDING ALGORITHM:
-  * 1. 
+  * Opens .obj file and feeds into the TextRecord class.
   *****************************************************************************/
-
 
 #include "RecordReader.h"
 
 void RecordReader::inputReader(string fileName) {
+    SymbolTable sym(fileName);
+    
     string object = fileName + ".obj";
     const char* objFile = object.c_str();
     string inputLine;
     inputFile.open(objFile);
     TextRecord textRecord(fileName);
     
-    SymbolTable sym(fileName);
-    
   
-    cout << endl << endl;
-    cout << "DEMO" << endl;
-    cout << "====" << endl;
-    cout << "Test getting Row and Col of a" << endl;
-    cout << "given value to find in the table:" << endl << endl;
-    
-    string val_findintable = "001791";
-    int foundrow;
-    string foundcol;
-    tie(foundrow,foundcol) = sym.getRowCol(SYMTAB,val_findintable);
-   
-    cout << "Value to find in table: " << val_findintable << endl << endl; 
-     
-    cout << "Found Row: " << foundrow << endl;
-    cout << "Found Col: " << foundcol << endl << endl;
-    
-    cout << "Using the found row, get data from a different column" << endl;
-    cout << "that is on the same row." << endl;
-    cout << "Example here using sym.symbol: ";
-    cout << sym.getData(SYMTAB,foundrow,sym.symbol);
-    cout << endl << endl;
-    
-
+    cout << endl;
+    cout << "Beginning disassembly" << endl;
     
     if (!inputFile.is_open()) {
         cout << "Error with file\n";
         cerr << "Check to make sure file exists within current directory\n";
     }
-    
-    // while (inputFile.good()) {
-    //     getline(inputFile, inputLine);
-    //     cout << inputLine << endl;
-    // }
     
     while (inputFile.good()) {
         getline(inputFile, inputLine);
@@ -70,7 +40,7 @@ void RecordReader::inputReader(string fileName) {
         if (inputLine[0] == 'H') {
              programName += (inputLine.substr(1, 5));
              programLength += (inputLine.substr(13, 5));
-             cout << programName << endl;
+             //cout << programName << endl;
         }
         else if (inputLine[0] == 'T') {
             //Col 1 == T
@@ -79,10 +49,7 @@ void RecordReader::inputReader(string fileName) {
             //Col 10-69 == Object code
             textRecord.readLine(inputLine);
         }
-
-       
    }
-    //textRecord.printLis(programLength);
     textRecord.print(programName, "0");
+    cout << "Disassembly completed" << endl << endl;
 }
-

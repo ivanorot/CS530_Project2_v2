@@ -2,19 +2,18 @@
  * COURSE:          CS-530 Systems Programming
  * SECTION:         01 Synchronous TTh 1900-2015
  * PROGRAM #:       2
- * LAST MODIFIED:   [SUBMISSION DATE]
+ * LAST MODIFIED:   30 November 2020
  * @author Ivan Orozco 82217656 cssc3012
  * @author Mariano Hernandez 820450001 cssc3062
  ************************************************/
 
  /******************************************************************************
-   * Program 02: main.cpp
+   * Program 02: StatementDecoder.cpp
    *****************************************************************************
    * PROGRAM DESCRIPTION:
-   * Starting point for the XE Disassembler Program
-   *****************************************************************************
-   * GUIDING ALGORITHM:
-   * 1.
+   * Reads and decodes nixbpe bits and decides if it is base relative, program
+   * relative, index addressing, simple addressing, direct addressing, or
+   * indirect addressing.
    *****************************************************************************/
 
 #include "StatementDecoder.h"
@@ -26,14 +25,11 @@ StatementDecoder::StatementDecoder(string s, int b, int pc) {
     fileName = s;
 }
 
-
-
 //format 1 = XX
 //format 2 = XX[XX]
 //format 3 = XXX[XXX]
 //format 4 = XXX[XXXXX]
 string StatementDecoder::getStatement(int format, string targetAddress, string nixbpe) {
-    cout << "progC: " << progC << "\t" << progC/2 << endl;
     if (format == 2) {
         return formatTwo(targetAddress);
     }
@@ -103,7 +99,6 @@ string StatementDecoder::formatThree(string targetAd, string nixbpe) {
 //immediate Addres	 n=0, i=1 [01xxxx] TA as operand
 //indirect Address	 n=1, i=0 [10xxxx] word at TA is fetch and used as an address to fetch the operand
 //simple addressin	 n=i [00xxxx] or [11xxxx] TA is the location of the operand
-
 string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
     TextRecord hexTranslator;
     //cout << nixbpe << "\t";
@@ -132,10 +127,9 @@ string StatementDecoder::getSymbol(string targetAd, string nixbpe) {
         //cout << tempReturn << endl;
         //cout << ".........................." << endl;
         //check if symbol
-
     }
     else if (nixbpe[3] == '1') {
-        cout << base<<endl;
+        //cout << base<<endl;
         checkSymbol += (base);
         //cout << checkSymbol << "\t";
         tempReturn = hexTranslator.intDecimalToStringHex(checkSymbol);

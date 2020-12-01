@@ -2,21 +2,18 @@
  * COURSE:          CS-530 Systems Programming
  * SECTION:         01 Synchronous TTh 1900-2015
  * PROGRAM #:       2
- * LAST MODIFIED:   [SUBMISSION DATE]
+ * LAST MODIFIED:   30 November 2020
  * @author Ivan Orozco 82217656 cssc3012
  * @author Mariano Hernandez 820450001 cssc3062
  ************************************************/
 
  /******************************************************************************
-   * Program 02: main.cpp
+   * Program 02: TextRecord.h
    *****************************************************************************
    * PROGRAM DESCRIPTION:
-   * Starting point for the XE Disassembler Program
-   *****************************************************************************
-   * GUIDING ALGORITHM:
-   * 1.
+   * This header file includes type definitions used for the TextRecord
    *****************************************************************************/
-#pragma once
+
 #ifndef TEXTRECORD_H
 #define TEXTRECORD_H
 
